@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Sum and subtract suite">
+    <test name="Sum test">
+        <classes>
+            <class name="hw1.CalculatorSumTest"/>
+        </classes>
+    </test>
+
+    <test name="Subtract test">
+        <classes>
+            <class name="hw1.CalculatorSubtractTest"/>
+        </classes>
+    </test>
+</suite>
