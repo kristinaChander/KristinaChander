@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class HomePageAndIframeTest {
 
@@ -30,6 +32,7 @@ public class HomePageAndIframeTest {
     public void setupTest() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
 
 
@@ -41,44 +44,55 @@ public class HomePageAndIframeTest {
         //2. Assert Browser title
         sa.assertEquals(driver.getTitle(), "Home Page");
         //3. Perform login
-        WebElement humanIcon = new WebDriverWait(driver, 1)
-                .until(ExpectedConditions.presenceOfElementLocated((By.id("user-icon"))));
+        WebElement humanIcon = waitAndGetElement(By.id("user-icon"), 2);
         humanIcon.click();
-        WebElement loginField = driver.findElement(By.id("name"));
+        WebElement loginField = waitAndGetElement(By.id("name"),1);
         loginField.sendKeys("Roman");
 
-        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement passwordField = waitAndGetElement(By.id("password"),1);
         passwordField.sendKeys("Jdi1234");
 
-        WebElement loginBtn = driver.findElement(By.id("login-button"));
+        WebElement loginBtn = waitAndGetElement(By.id("login-button"),1);
         loginBtn.click();
 
         //4. Assert Username is loggined
-        WebElement logginedUserName = new WebDriverWait(driver, 1).until(ExpectedConditions.presenceOfElementLocated(By.id("user-name")));
+        WebElement logginedUserName = waitAndGetElement(By.id("user-name"), 2);
         sa.assertEquals(logginedUserName.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
-        List<WebElement> headerMenuElements = driver
-                .findElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
+        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
+
         sa.assertEquals(headerMenuElements.size(), 4);
-        sa.assertEquals(headerMenuElements.get(0).getText(), "HOME");
-        sa.assertEquals(headerMenuElements.get(1).getText(), "CONTACT FORM");
-        sa.assertEquals(headerMenuElements.get(2).getText(), "SERVICE");
-        sa.assertEquals(headerMenuElements.get(3).getText(), "METALS & COLORS");
+
+        List<String> stringHeaderMenuElements = headerMenuElements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        sa.assertTrue(stringHeaderMenuElements.contains("HOME"));
+        sa.assertTrue(stringHeaderMenuElements.contains("CONTACT FORM"));
+        sa.assertTrue(stringHeaderMenuElements.contains("SERVICE"));
+        sa.assertTrue(stringHeaderMenuElements.contains("METALS & COLORS"));
+
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
-        List<WebElement> fourImages = driver.findElements(By.className(".benefit-icon"));
+        List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"));
         sa.assertEquals(fourImages.size(), 4);
 
         //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> fourTextsUnderImages = driver.findElements(By.cssSelector("span.benefit-txt"));
+        List<WebElement> fourTextsUnderImages = waitAndGetListOfElements(By.cssSelector("span.benefit-txt"));
+
         sa.assertEquals(fourTextsUnderImages.size(), 4);
-        sa.assertEquals(fourTextsUnderImages.get(0).getText(), "To include good practices\n" +
-                "and ideas from successful\n" + "EPAM project");
-        sa.assertEquals(fourTextsUnderImages.get(1).getText(), "To be flexible and\n" + "customizable");
-        sa.assertEquals(fourTextsUnderImages.get(2).getText(), "To be multiplatform");
-        sa.assertEquals(fourTextsUnderImages.get(3).getText(), "Already have good base\n" + "(about 20 internal and\n" +
-                "some external projects),\n" + "wish to get more…");
+
+        List<String> fourTextsUnderImagesList = fourTextsUnderImages.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        sa.assertTrue(fourTextsUnderImagesList.contains("To include good practices\n" + "and ideas from successful\n" + "EPAM project"));
+        sa.assertTrue(fourTextsUnderImagesList.contains("To be flexible and\n" + "customizable"));
+        sa.assertTrue(fourTextsUnderImagesList.contains("To be multiplatform"));
+        sa.assertTrue(fourTextsUnderImagesList.contains("Already have good base\n" + "(about 20 internal and\n" +
+                "some external projects),\n" + "wish to get more…"));
+
 
         //8. Assert that the iframe with “Frame Button” exists
         try {
@@ -91,23 +105,37 @@ public class HomePageAndIframeTest {
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
         driver.switchTo().frame("frame");
 
-        WebElement iFrameElement = new WebDriverWait(driver, 2)
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("frame-button")));
+        WebElement iFrameElement = waitAndGetElement(By.id("frame-button"), 2);
         sa.assertNotNull(iFrameElement);
 
         //10. Switch to original window back
         driver.switchTo().defaultContent();
 
         //11. Assert that 5 items in the Left Section are displayed and they have proper text
-        List<WebElement> leftSideMenuElements = new WebDriverWait(driver,1)
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".sidebar-menu>li>a")));
+        List<WebElement> leftSideMenuElements = waitAndGetListOfElements(By.cssSelector(".sidebar-menu>li>a"));
 
         sa.assertEquals(leftSideMenuElements.size(), 4);
-        sa.assertEquals(leftSideMenuElements.get(0).getText(), "Home");
-        sa.assertEquals(leftSideMenuElements.get(1).getText(), "Contact form");
-        sa.assertEquals(leftSideMenuElements.get(2).getText(), "Service");
-        sa.assertEquals(leftSideMenuElements.get(3).getText(), "Metals & Colors");
-        sa.assertEquals(leftSideMenuElements.get(4).getText(), "Elements packs");
+
+        List<String> leftSideMenuElementsList = leftSideMenuElements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        sa.assertTrue(leftSideMenuElementsList.contains("Home"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Contact form"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Service"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
+
+
+    }
+
+    private WebElement waitAndGetElement(By by, int i) {
+        return new WebDriverWait(driver, i)
+                .until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    private List<WebElement> waitAndGetListOfElements(By by) {
+        return new WebDriverWait(driver,3)
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
     }
 
     //Close Browser
