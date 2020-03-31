@@ -1,24 +1,14 @@
 package hw1;
 
-import com.epam.tat.module4.Calculator;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class CalculatorSumTest {
-
-    private Calculator calculator;
-
-    @BeforeMethod
-    public void setCalculator() {
-        calculator = new Calculator();
-    }
+public class CalculatorSumTest extends BaseCalculatorTest {
 
     @DataProvider
-    public static Object[][] sumLongArgumentsTestData() {
+    public Object[][] sumLongArgumentsTestData() {
         return new Object[][]{
                 {1, 2, 3},
                 {1, 5, 6},
@@ -33,7 +23,7 @@ public class CalculatorSumTest {
     }
 
     @DataProvider
-    public static Object[][] sumDoubleArgumentsTestData() {
+    public Object[][] sumDoubleArgumentsTestData() {
         return new Object[][]{
                 {1.0, 5.8, 6.8},
                 {4.0, 0.1, 4.1}
@@ -46,8 +36,4 @@ public class CalculatorSumTest {
         assertEquals(actual, expected);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        calculator = null;
-    }
 }

@@ -1,24 +1,14 @@
 package hw1;
 
-import com.epam.tat.module4.Calculator;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class CalculatorDivideTest {
-
-    private Calculator calculator;
-
-    @BeforeMethod
-    public void setCalculator() {
-        calculator = new Calculator();
-    }
+public class CalculatorDivideTest extends BaseCalculatorTest{
 
     @DataProvider
-    public static Object[][] divideLongArgumentsTestData() {
+    public  Object[][] divideLongArgumentsTestData() {
         return new Object[][]{
                 {5, 4, 1},
                 {5, 2, 2},
@@ -27,7 +17,7 @@ public class CalculatorDivideTest {
     }
 
     @DataProvider
-    public static Object[][] divideByZeroLongArgumentsTestData() {
+    public Object[][] divideByZeroLongArgumentsTestData() {
         return new Object[][]{
                 {1},
                 {0}
@@ -46,7 +36,7 @@ public class CalculatorDivideTest {
     }
 
     @DataProvider
-    public static Object[][] divideDoubleArgumentsTestData() {
+    public Object[][] divideDoubleArgumentsTestData() {
         return new Object[][]{
                 {1.0, 0.5, 2.0},
                 {10.0, 4.0, 2.5}
@@ -57,10 +47,5 @@ public class CalculatorDivideTest {
     public void divideDoubleArgumentsTest(double a, double b, double expected) {
         double actual = calculator.div(a, b);
         assertEquals(actual, expected);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        calculator = null;
     }
 }
