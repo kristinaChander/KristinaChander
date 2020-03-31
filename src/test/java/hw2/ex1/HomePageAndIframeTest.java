@@ -15,11 +15,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class HomePageAndIframeTest {
-
 
     private WebDriver driver;
 
@@ -32,17 +30,18 @@ public class HomePageAndIframeTest {
     public void setupTest() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
-
 
     @Test
     public void homePageTest() {
         SoftAssert sa = new SoftAssert();
+
         //1. Open test site by URL
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+
         //2. Assert Browser title
         sa.assertEquals(driver.getTitle(), "Home Page");
+
         //3. Perform login
         WebElement humanIcon = waitAndGetElement(By.id("user-icon"), 2);
         humanIcon.click();
@@ -55,9 +54,9 @@ public class HomePageAndIframeTest {
         WebElement loginBtn = waitAndGetElement(By.id("login-button"),1);
         loginBtn.click();
 
-        //4. Assert Username is loggined
-        WebElement logginedUserName = waitAndGetElement(By.id("user-name"), 2);
-        sa.assertEquals(logginedUserName.getText(), "ROMAN IOVLEV");
+        //4. Assert Username is logged in
+        WebElement loggedInUsername = waitAndGetElement(By.id("user-name"), 2);
+        sa.assertEquals(loggedInUsername.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
         List<WebElement> headerMenuElements = waitAndGetListOfElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
@@ -72,7 +71,6 @@ public class HomePageAndIframeTest {
         sa.assertTrue(stringHeaderMenuElements.contains("CONTACT FORM"));
         sa.assertTrue(stringHeaderMenuElements.contains("SERVICE"));
         sa.assertTrue(stringHeaderMenuElements.contains("METALS & COLORS"));
-
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"));
@@ -92,7 +90,6 @@ public class HomePageAndIframeTest {
         sa.assertTrue(fourTextsUnderImagesList.contains("To be multiplatform"));
         sa.assertTrue(fourTextsUnderImagesList.contains("Already have good base\n" + "(about 20 internal and\n" +
                 "some external projects),\n" + "wish to get more…"));
-
 
         //8. Assert that the iframe with “Frame Button” exists
         try {
@@ -124,8 +121,6 @@ public class HomePageAndIframeTest {
         sa.assertTrue(leftSideMenuElementsList.contains("Contact form"));
         sa.assertTrue(leftSideMenuElementsList.contains("Service"));
         sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
-
-
     }
 
     private WebElement waitAndGetElement(By by, int i) {

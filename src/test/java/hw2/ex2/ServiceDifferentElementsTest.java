@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class ServiceDifferentElementsTest {
@@ -30,9 +29,7 @@ public class ServiceDifferentElementsTest {
     public void setupTest() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
-
 
     @Test
     public void homePageTest() {
@@ -89,7 +86,6 @@ public class ServiceDifferentElementsTest {
         //for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
-
         List<WebElement> logList = waitAndGetListOfElements(By.cssSelector(".logs>li"));
         sa.assertEquals(logList.size(), 4);
 
