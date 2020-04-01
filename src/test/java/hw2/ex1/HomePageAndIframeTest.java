@@ -40,7 +40,8 @@ public class HomePageAndIframeTest extends TestBase {
         sa.assertEquals(loggedInUsername.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
-        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"), 3);
+        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.cssSelector("header ul.uui-navigation.nav.navbar-nav.m-l8>li>a"),2);
+
 
         sa.assertEquals(headerMenuElements.size(), 4);
 
