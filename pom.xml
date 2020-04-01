@@ -17,6 +17,13 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
@@ -40,6 +47,35 @@
     </dependencies>
 
     <profiles>
+        <profile>
+            <id>SumAndSub</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw1/SumAndSubtractTestSuite.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>All</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw1/AllTestsSuite.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>MultAndDiv</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw1/MultiplyAndDivideTestSuite.xml</suite.xml>
+            </properties>
+        </profile>
         <profile>
             <id>Lesson2Exercise1Tests</id>
             <activation>
@@ -71,7 +107,6 @@
         </profile>
     </profiles>
 
-
     <build>
         <plugins>
             <plugin>
@@ -96,6 +131,8 @@
             </plugin>
         </plugins>
     </build>
+
+
 
 
 </project>
