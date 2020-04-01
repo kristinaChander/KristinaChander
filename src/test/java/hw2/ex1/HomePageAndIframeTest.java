@@ -78,7 +78,6 @@ public class HomePageAndIframeTest extends TestBase {
         WebElement buttonFrame = waitAndGetElement(By.id("frame"),1);
         sa.assertNotNull(buttonFrame);
 
-
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
         driver.switchTo().frame("frame");
 
