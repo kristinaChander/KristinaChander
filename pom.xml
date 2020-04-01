@@ -41,22 +41,32 @@
 
     <profiles>
         <profile>
-            <id>ex1</id>
+            <id>Lesson2Exercise1Tests</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/exercise1.xml</suite.xml>
+                <suite.xml>src/test/resources/Lesson2Exercise1.xml</suite.xml>
             </properties>
         </profile>
 
         <profile>
-            <id>ex2</id>
+            <id>Lesson2Exercise2Tests</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/exercise2.xml</suite.xml>
+                <suite.xml>src/test/resources/Lesson2Exercise2.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>Lesson2AllTests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/Lesson2AllTests.xml</suite.xml>
             </properties>
         </profile>
     </profiles>

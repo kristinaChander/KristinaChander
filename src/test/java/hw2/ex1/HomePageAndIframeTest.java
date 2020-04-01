@@ -2,7 +2,6 @@ package hw2.ex1;
 
 import hw2.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -26,13 +25,13 @@ public class HomePageAndIframeTest extends TestBase {
         //3. Perform login
         WebElement humanIcon = waitAndGetElement(By.id("user-icon"), 2);
         humanIcon.click();
-        WebElement loginField = waitAndGetElement(By.id("name"),1);
+        WebElement loginField = waitAndGetElement(By.id("name"), 1);
         loginField.sendKeys("Roman");
 
-        WebElement passwordField = waitAndGetElement(By.id("password"),1);
+        WebElement passwordField = waitAndGetElement(By.id("password"), 1);
         passwordField.sendKeys("Jdi1234");
 
-        WebElement loginBtn = waitAndGetElement(By.id("login-button"),1);
+        WebElement loginBtn = waitAndGetElement(By.id("login-button"), 1);
         loginBtn.click();
 
         //4. Assert Username is logged in
@@ -40,7 +39,7 @@ public class HomePageAndIframeTest extends TestBase {
         sa.assertEquals(loggedInUsername.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
-        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.cssSelector("header ul.uui-navigation.nav.navbar-nav.m-l8>li>a"),2);
+        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.cssSelector("header ul.uui-navigation.nav.navbar-nav.m-l8>li>a"), 2);
 
 
         sa.assertEquals(headerMenuElements.size(), 4);
@@ -75,7 +74,7 @@ public class HomePageAndIframeTest extends TestBase {
 
         //8. Assert that the iframe with “Frame Button” exists
 
-        WebElement buttonFrame = waitAndGetElement(By.id("frame"),1);
+        WebElement buttonFrame = waitAndGetElement(By.id("frame"), 1);
         sa.assertNotNull(buttonFrame);
 
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
@@ -96,13 +95,17 @@ public class HomePageAndIframeTest extends TestBase {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
-        sa.assertTrue(leftSideMenuElementsList.contains("Home"));
-        sa.assertTrue(leftSideMenuElementsList.contains("Contact form"));
-        sa.assertTrue(leftSideMenuElementsList.contains("Service"));
-        sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
-        sa.assertTrue(leftSideMenuElementsList.contains("Elements packs"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Home"), "Left side menu does not contain Home");
+        sa.assertTrue(leftSideMenuElementsList.contains("Contact form"), "Left side menu does not contain Contact form");
+        sa.assertTrue(leftSideMenuElementsList.contains("Service"), "Left side menu does not contain Service");
+        sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"), "Left side menu does not contain Metals & Colors");
+        sa.assertTrue(leftSideMenuElementsList.contains("Elements packs"), "Left side menu does not contain Elements packs");
 
-        sa.assertAll();
+        try {
+            sa.assertAll();
+        } catch (AssertionError e) {
+            System.out.println(sa);
+        }
     }
 
 }
