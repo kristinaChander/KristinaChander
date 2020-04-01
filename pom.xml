@@ -82,7 +82,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/Lesson2Exercise1.xml</suite.xml>
+                <suite.xml>src/test/resources/hw2/Lesson2Exercise1.xml</suite.xml>
             </properties>
         </profile>
 
@@ -92,7 +92,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/Lesson2Exercise2.xml</suite.xml>
+                <suite.xml>src/test/resources/hw2/Lesson2Exercise2.xml</suite.xml>
             </properties>
         </profile>
 
@@ -102,7 +102,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/Lesson2AllTests.xml</suite.xml>
+                <suite.xml>src/test/resources/hw2/Lesson2AllTests.xml</suite.xml>
             </properties>
         </profile>
     </profiles>
@@ -131,8 +131,5 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 
 </project>
