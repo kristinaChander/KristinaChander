@@ -74,12 +74,10 @@ public class HomePageAndIframeTest extends TestBase {
                 "some external projects),\n" + "wish to get more…"));
 
         //8. Assert that the iframe with “Frame Button” exists
-        try {
-            driver.switchTo().frame("frame");
-            driver.switchTo().defaultContent();
-        } catch (NoSuchFrameException e) {
-            sa.fail("The frame with Frame Button doesn't exist");
-        }
+
+        WebElement buttonFrame = waitAndGetElement(By.id("frame"),1);
+        sa.assertNotNull(buttonFrame);
+
 
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
         driver.switchTo().frame("frame");
