@@ -1,7 +1,6 @@
 package hw3;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -33,6 +32,12 @@ public class HomePage {
 
     @FindBy(css = "span.benefit-txt")
     private List<WebElement> fourTextsUnderImages;
+
+    @FindBy(id = "frame")
+    private WebElement iFrame;
+
+    @FindBy(id = "frame-button")
+    WebElement iFrameButton;
 
     public void openLogInForm(){
         humanIcon.click();
@@ -76,14 +81,12 @@ public class HomePage {
         return fourTextsUnderImages.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
-
-
-
     }
+     public WebElement getIframe(){
+        return iFrame;
+     }
 
-
-
-
-
-
+     public WebElement getIframeButton(){
+        return iFrameButton;
+     }
 }
