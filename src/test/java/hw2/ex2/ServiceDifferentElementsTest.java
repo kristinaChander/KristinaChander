@@ -9,16 +9,19 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class ServiceDifferentElementsTest extends TestBase {
 
     @Test
     public void homePageTest() {
-        SoftAssert sa = new SoftAssert();
+
         //1. Open test site by URL
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
 
         //2. Assert Browser title
-        sa.assertEquals(driver.getTitle(), "Home Page");
+        assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
         WebElement humanIcon = waitAndGetElement(By.id("user-icon"),2);
@@ -35,7 +38,7 @@ public class ServiceDifferentElementsTest extends TestBase {
 
         //4. Assert Username is logged in
         WebElement loggedInUserName = waitAndGetElement(By.id("user-name"),2);
-        sa.assertEquals(loggedInUserName.getText(), "ROMAN IOVLEV");
+        assertEquals(loggedInUserName.getText(), "ROMAN IOVLEV");
 
         //5.Open through the header menu Service -> Different Elements Page
         WebElement menuService = waitAndGetElement(By.linkText("SERVICE"),2);
@@ -67,18 +70,16 @@ public class ServiceDifferentElementsTest extends TestBase {
         //for radio button there is a log row and value is corresponded to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
         List<WebElement> logList = waitAndGetListOfElements(By.cssSelector(".logs>li"),2);
-        sa.assertEquals(logList.size(), 4);
+      assertEquals(logList.size(), 4);
 
         List<String> filteredLogs = logList.stream()
                 .map(s -> s.getText().substring(9))
                 .collect(Collectors.toList());
 
-        sa.assertTrue(filteredLogs.contains("Colors: value changed to Yellow"));
-        sa.assertTrue(filteredLogs.contains("metal: value changed to Selen"));
-        sa.assertTrue(filteredLogs.contains("Wind: condition changed to true"));
-        sa.assertTrue(filteredLogs.contains("Water: condition changed to true"));
-
-        sa.assertAll();
+        assertTrue(filteredLogs.contains("Colors: value changed to Yellow"));
+        assertTrue(filteredLogs.contains("metal: value changed to Selen"));
+        assertTrue(filteredLogs.contains("Wind: condition changed to true"));
+        assertTrue(filteredLogs.contains("Water: condition changed to true"));
     }
 
 }
