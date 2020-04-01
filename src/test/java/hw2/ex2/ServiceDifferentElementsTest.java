@@ -81,5 +81,4 @@ public class ServiceDifferentElementsTest extends TestBase {
         assertTrue(filteredLogs.contains("Wind: condition changed to true"));
         assertTrue(filteredLogs.contains("Water: condition changed to true"));
     }
-
 }
