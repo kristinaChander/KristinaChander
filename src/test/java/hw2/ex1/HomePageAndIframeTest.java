@@ -1,5 +1,6 @@
 package hw2.ex1;
 
+import hw2.TestBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchFrameException;
@@ -17,20 +18,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HomePageAndIframeTest {
+public class HomePageAndIframeTest extends TestBase {
 
-    private WebDriver driver;
-
-    @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeMethod
-    public void setupTest() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
 
     @Test
     public void homePageTest() {
@@ -59,7 +48,7 @@ public class HomePageAndIframeTest {
         sa.assertEquals(loggedInUsername.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
-        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
+        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"), 3);
 
         sa.assertEquals(headerMenuElements.size(), 4);
 
@@ -73,11 +62,11 @@ public class HomePageAndIframeTest {
         sa.assertTrue(stringHeaderMenuElements.contains("METALS & COLORS"));
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
-        List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"));
+        List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"), 3);
         sa.assertEquals(fourImages.size(), 4);
 
         //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> fourTextsUnderImages = waitAndGetListOfElements(By.cssSelector("span.benefit-txt"));
+        List<WebElement> fourTextsUnderImages = waitAndGetListOfElements(By.cssSelector("span.benefit-txt"), 3);
 
         sa.assertEquals(fourTextsUnderImages.size(), 4);
 
@@ -109,7 +98,7 @@ public class HomePageAndIframeTest {
         driver.switchTo().defaultContent();
 
         //11. Assert that 5 items in the Left Section are displayed and they have proper text
-        List<WebElement> leftSideMenuElements = waitAndGetListOfElements(By.cssSelector(".sidebar-menu>li>a"));
+        List<WebElement> leftSideMenuElements = waitAndGetListOfElements(By.cssSelector(".sidebar-menu>li>a"), 3);
 
         sa.assertEquals(leftSideMenuElements.size(), 4);
 
@@ -123,21 +112,4 @@ public class HomePageAndIframeTest {
         sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
     }
 
-    private WebElement waitAndGetElement(By by, int i) {
-        return new WebDriverWait(driver, i)
-                .until(ExpectedConditions.presenceOfElementLocated(by));
-    }
-
-    private List<WebElement> waitAndGetListOfElements(By by) {
-        return new WebDriverWait(driver,3)
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
-    }
-
-    //Close Browser
-    @AfterMethod
-    public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }
