@@ -109,12 +109,12 @@ public class HomePageAndIframeTest {
 //        sa.assertNotNull(iFrameButton);
 
         //10. Switch to original window back
-        driver.switchTo().defaultContent();
+       // driver.switchTo().defaultContent();
 
         //11. Assert that 5 items in the Left Section are displayed and they have proper text
         List<WebElement> leftSideMenuElements = waitAndGetListOfElements(By.cssSelector(".sidebar-menu>li>a"));
 
-        sa.assertEquals(leftSideMenuElements.size(), 4);
+        sa.assertEquals(leftSideMenuElements.size(), 5);
 
         List<String> leftSideMenuElementsList = leftSideMenuElements.stream()
                 .map(WebElement::getText)
@@ -124,6 +124,7 @@ public class HomePageAndIframeTest {
         sa.assertTrue(leftSideMenuElementsList.contains("Contact form"));
         sa.assertTrue(leftSideMenuElementsList.contains("Service"));
         sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Elements packs"));
     }
 
     private WebElement waitAndGetElement(By by, int i) {

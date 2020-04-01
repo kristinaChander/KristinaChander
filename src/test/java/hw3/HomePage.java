@@ -1,6 +1,7 @@
 package hw3;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,6 +39,10 @@ public class HomePage {
 
     @FindBy(id = "frame-button")
     WebElement iFrameButton;
+
+    @FindBy(css = ".sidebar-menu>li>a" )
+    List<WebElement> leftSideMenuElements;
+
 
     public void openLogInForm(){
         humanIcon.click();
@@ -88,5 +93,15 @@ public class HomePage {
 
      public WebElement getIframeButton(){
         return iFrameButton;
+     }
+
+     public int getLeftSideTabsCount(){
+        return leftSideMenuElements.size();
+     }
+
+     public List<String> getLeftSideTabListText(){
+        return leftSideMenuElements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
      }
 }

@@ -1,6 +1,10 @@
 package hw3;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.*;
 
@@ -54,6 +58,17 @@ public class HomePageElementsSearchAndLoginTest extends AbstractTestBase {
 
         assertNotNull(homePage.getIframeButton());
         driver.switchTo().defaultContent();
+    }
+
+    @Test
+    public void LeftSideMenuTest(){
+        assertEquals(homePage.getLeftSideTabsCount(), 5);
+
+        assertTrue(homePage.getLeftSideTabListText().contains("Home"));
+        assertTrue(homePage.getLeftSideTabListText().contains("Contact form"));
+        assertTrue(homePage.getLeftSideTabListText().contains("Service"));
+        assertTrue(homePage.getLeftSideTabListText().contains("Metals & Colors"));
+        assertTrue(homePage.getLeftSideTabListText().contains("Elements packs"));
     }
 
 
