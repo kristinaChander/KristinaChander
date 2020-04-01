@@ -17,6 +17,13 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
@@ -41,26 +48,64 @@
 
     <profiles>
         <profile>
-            <id>ex1</id>
+            <id>SumAndSub</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/exercise1.xml</suite.xml>
+                <suite.xml>src/test/resources/hw1/SumAndSubtractTestSuite.xml</suite.xml>
             </properties>
         </profile>
 
         <profile>
-            <id>ex2</id>
+            <id>All</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.xml>src/test/resources/exercise2.xml</suite.xml>
+                <suite.xml>src/test/resources/hw1/AllTestsSuite.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>MultAndDiv</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw1/MultiplyAndDivideTestSuite.xml</suite.xml>
+            </properties>
+        </profile>
+        <profile>
+            <id>Lesson2Exercise1Tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw2/Lesson2Exercise1.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>Lesson2Exercise2Tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw2/Lesson2Exercise2.xml</suite.xml>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>Lesson2AllTests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw2/Lesson2AllTests.xml</suite.xml>
             </properties>
         </profile>
     </profiles>
-
 
     <build>
         <plugins>
@@ -86,6 +131,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
