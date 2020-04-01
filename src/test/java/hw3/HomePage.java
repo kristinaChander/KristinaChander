@@ -1,7 +1,6 @@
 package hw3;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,10 +37,20 @@ public class HomePage {
     private WebElement iFrame;
 
     @FindBy(id = "frame-button")
-    WebElement iFrameButton;
+    private WebElement iFrameButton;
 
     @FindBy(css = ".sidebar-menu>li>a" )
-    List<WebElement> leftSideMenuElements;
+    private List<WebElement> leftSideMenuElements;
+
+    @FindBy(linkText = "SERVICE")
+    private WebElement menuService;
+
+
+
+    @FindBy(linkText = "DIFFERENT ELEMENTS")
+    private WebElement differentElements;
+
+
 
 
     public void openLogInForm(){
@@ -104,4 +113,12 @@ public class HomePage {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
      }
+
+    public void clickOnTheServiceTab(){
+        menuService.click();
+    }
+
+    public void clickOnTheDifferentElements(){
+        differentElements.click();
+    }
 }

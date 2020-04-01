@@ -12,6 +12,7 @@ public abstract class AbstractTestBase {
 
     protected WebDriver driver;
     protected HomePage homePage;
+    protected ElementsPage elementsPage;
 
     @BeforeClass
     public static void setupClass() {
@@ -22,8 +23,8 @@ public abstract class AbstractTestBase {
     public void setupTest() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
         homePage = PageFactory.initElements(driver, HomePage.class);
+        elementsPage = PageFactory.initElements(driver,ElementsPage.class);
     }
 
     @AfterMethod
