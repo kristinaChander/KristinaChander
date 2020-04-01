@@ -59,46 +59,48 @@ public class HomePageAndIframeTest {
 //        sa.assertEquals(loggedInUsername.getText(), "ROMAN IOVLEV");
 
         //5. Assert that there are 4 items on the header section they are displayed and have proper texts
-        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.cssSelector("header ul.uui-navigation.nav.navbar-nav.m-l8>li>a"));
-                //(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
+//        List<WebElement> headerMenuElements = waitAndGetListOfElements(By.cssSelector("header ul.uui-navigation.nav.navbar-nav.m-l8>li>a"));
+//                //(By.xpath("//header/div/nav/ul[@class='uui-navigation nav navbar-nav m-l8']/li/a"));
+//
+//        sa.assertEquals(headerMenuElements.size(), 4);
+//
+//        List<String> stringHeaderMenuElements = headerMenuElements.stream()
+//                .map(WebElement::getText)
+//                .collect(Collectors.toList());
+//
+//        sa.assertTrue(stringHeaderMenuElements.contains("HOME"));
+//        sa.assertTrue(stringHeaderMenuElements.contains("CONTACT FORM"));
+//        sa.assertTrue(stringHeaderMenuElements.contains("SERVICE"));
+        //sa.assertTrue(stringHeaderMenuElements.contains("METALS & COLORS"));
 
-        sa.assertEquals(headerMenuElements.size(), 4);
-
-        List<String> stringHeaderMenuElements = headerMenuElements.stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
-
-        sa.assertTrue(stringHeaderMenuElements.contains("HOME"));
-        sa.assertTrue(stringHeaderMenuElements.contains("CONTACT FORM"));
-        sa.assertTrue(stringHeaderMenuElements.contains("SERVICE"));
-        sa.assertTrue(stringHeaderMenuElements.contains("METALS & COLORS"));
-
-        //6. Assert that there are 4 images on the Index Page and they are displayed
-        List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"));
-        sa.assertEquals(fourImages.size(), 4);
+//        //6. Assert that there are 4 images on the Index Page and they are displayed
+//        List<WebElement> fourImages = waitAndGetListOfElements(By.className("benefit-icon"));
+//        sa.assertEquals(fourImages.size(), 4);
 
         //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> fourTextsUnderImages = waitAndGetListOfElements(By.cssSelector("span.benefit-txt"));
-
-        sa.assertEquals(fourTextsUnderImages.size(), 4);
-
-        List<String> fourTextsUnderImagesList = fourTextsUnderImages.stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
-
-        sa.assertTrue(fourTextsUnderImagesList.contains("To include good practices\n" + "and ideas from successful\n" + "EPAM project"));
-        sa.assertTrue(fourTextsUnderImagesList.contains("To be flexible and\n" + "customizable"));
-        sa.assertTrue(fourTextsUnderImagesList.contains("To be multiplatform"));
-        sa.assertTrue(fourTextsUnderImagesList.contains("Already have good base\n" + "(about 20 internal and\n" +
-                "some external projects),\n" + "wish to get more…"));
+//        List<WebElement> fourTextsUnderImages = waitAndGetListOfElements(By.cssSelector("span.benefit-txt"));
+//
+//        sa.assertEquals(fourTextsUnderImages.size(), 4);
+//
+//        List<String> fourTextsUnderImagesList = fourTextsUnderImages.stream()
+//                .map(WebElement::getText)
+//                .collect(Collectors.toList());
+//
+//        sa.assertTrue(fourTextsUnderImagesList.contains("To include good practices\n" + "and ideas from successful\n" + "EPAM project"));
+//        sa.assertTrue(fourTextsUnderImagesList.contains("To be flexible and\n" + "customizable"));
+//        sa.assertTrue(fourTextsUnderImagesList.contains("To be multiplatform"));
+//        sa.assertTrue(fourTextsUnderImagesList.contains("Already have good base\n" + "(about 20 internal and\n" +
+//                "some external projects),\n" + "wish to get more…"));
 
         //8. Assert that the iframe with “Frame Button” exists
-        try {
-            driver.switchTo().frame("frame");
-            driver.switchTo().defaultContent();
-        } catch (NoSuchFrameException e) {
-            sa.fail("The frame with Frame Button doesn't exist");
-        }
+        //try {
+
+
+//            driver.switchTo().frame("frame");
+//            driver.switchTo().defaultContent();
+//        } catch (NoSuchFrameException e) {
+//            sa.fail("The frame with Frame Button doesn't exist");
+//        }
 
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
         driver.switchTo().frame("frame");

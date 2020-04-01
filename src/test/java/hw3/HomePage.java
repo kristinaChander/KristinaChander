@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomePage {
 
@@ -24,7 +25,14 @@ public class HomePage {
     @FindBy(id = "user-name")
     private WebElement loggedInUsername;
 
+    @FindBy(css = "header ul.uui-navigation.nav.navbar-nav.m-l8>li>a")
     private List<WebElement> headerMenuElements;
+
+    @FindBy(className= "benefit-icon")
+    private List<WebElement> fourImages;
+
+    @FindBy(css = "span.benefit-txt")
+    private List<WebElement> fourTextsUnderImages;
 
     public void openLogInForm(){
         humanIcon.click();
@@ -44,6 +52,33 @@ public class HomePage {
 
     public String getLoggedInUserName(){
         return loggedInUsername.getText();
+    }
+
+    public int getHeaderTabCount(){
+        return headerMenuElements.size();
+    }
+
+    public List<String> getHeaderTabNamesList(){
+        return headerMenuElements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+    public int getImagesCount(){
+        return fourImages.size();
+    }
+
+    public int getTextsCount(){
+        return fourTextsUnderImages.size();
+    }
+
+    public List<String> getBenefitTexts(){
+        return fourTextsUnderImages.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+
+
     }
 
 
