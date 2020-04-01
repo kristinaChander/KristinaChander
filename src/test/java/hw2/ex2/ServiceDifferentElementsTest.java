@@ -77,6 +77,8 @@ public class ServiceDifferentElementsTest extends TestBase {
         sa.assertTrue(filteredLogs.contains("metal: value changed to Selen"));
         sa.assertTrue(filteredLogs.contains("Wind: condition changed to true"));
         sa.assertTrue(filteredLogs.contains("Water: condition changed to true"));
+
+        sa.assertAll();
     }
 
 }

@@ -90,7 +90,7 @@ public class HomePageAndIframeTest extends TestBase {
         //11. Assert that 5 items in the Left Section are displayed and they have proper text
         List<WebElement> leftSideMenuElements = waitAndGetListOfElements(By.cssSelector(".sidebar-menu>li>a"), 3);
 
-        sa.assertEquals(leftSideMenuElements.size(), 4);
+        sa.assertEquals(leftSideMenuElements.size(), 5);
 
         List<String> leftSideMenuElementsList = leftSideMenuElements.stream()
                 .map(WebElement::getText)
@@ -100,6 +100,9 @@ public class HomePageAndIframeTest extends TestBase {
         sa.assertTrue(leftSideMenuElementsList.contains("Contact form"));
         sa.assertTrue(leftSideMenuElementsList.contains("Service"));
         sa.assertTrue(leftSideMenuElementsList.contains("Metals & Colors"));
+        sa.assertTrue(leftSideMenuElementsList.contains("Elements packs"));
+
+        sa.assertAll();
     }
 
 }
