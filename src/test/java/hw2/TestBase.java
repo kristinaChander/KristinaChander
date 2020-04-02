@@ -13,7 +13,10 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 
-public  abstract class TestBase {
+public abstract class TestBase {
+
+    private static final int TIME_OUT_IN_SECONDS = 5;
+
     protected WebDriver driver;
 
     @BeforeClass
@@ -25,25 +28,23 @@ public  abstract class TestBase {
     public void setupTest() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
+        //1. Open test site by URL
+        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
-    protected WebElement waitAndGetElement(By by, int timeOutInSeconds) {
-        return new WebDriverWait(driver, timeOutInSeconds)
-                .until(ExpectedConditions.presenceOfElementLocated(by));
+    protected WebElement waitAndGetElement(By by) {
+        return new WebDriverWait(driver, TIME_OUT_IN_SECONDS)
+                .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    protected List<WebElement> waitAndGetListOfElements(By by, int timeOutInSeconds) {
-        return new WebDriverWait(driver, timeOutInSeconds)
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+    protected List<WebElement> waitAndGetListOfElements(By by) {
+        return new WebDriverWait(driver, TIME_OUT_IN_SECONDS)
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
 
     //Close Browser
     @AfterMethod
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
-
 }

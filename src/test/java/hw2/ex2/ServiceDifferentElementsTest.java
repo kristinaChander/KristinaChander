@@ -15,60 +15,56 @@ public class ServiceDifferentElementsTest extends TestBase {
 
     @Test
     public void homePageTest() {
-
-        //1. Open test site by URL
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
-
         //2. Assert Browser title
         assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        WebElement humanIcon = waitAndGetElement(By.id("user-icon"), 2);
+        WebElement humanIcon = waitAndGetElement(By.id("user-icon"));
         humanIcon.click();
 
-        WebElement loginField = waitAndGetElement(By.id("name"), 1);
+        WebElement loginField = waitAndGetElement(By.id("name"));
         loginField.sendKeys("Roman");
 
-        WebElement passwordField = waitAndGetElement(By.id("password"), 1);
+        WebElement passwordField = waitAndGetElement(By.id("password"));
         passwordField.sendKeys("Jdi1234");
 
-        WebElement loginBtn = waitAndGetElement(By.id("login-button"), 1);
+        WebElement loginBtn = waitAndGetElement(By.id("login-button"));
         loginBtn.click();
 
         //4. Assert Username is logged in
-        WebElement loggedInUserName = waitAndGetElement(By.id("user-name"), 2);
+        WebElement loggedInUserName = waitAndGetElement(By.id("user-name"));
         assertEquals(loggedInUserName.getText(), "ROMAN IOVLEV");
 
         //5.Open through the header menu Service -> Different Elements Page
-        WebElement menuService = waitAndGetElement(By.linkText("SERVICE"), 2);
+        WebElement menuService = waitAndGetElement(By.linkText("SERVICE"));
         menuService.click();
 
-        WebElement differentElements = waitAndGetElement(By.linkText("DIFFERENT ELEMENTS"), 3);
+        WebElement differentElements = waitAndGetElement(By.linkText("DIFFERENT ELEMENTS"));
         differentElements.click();
 
         //6. Select checkboxes Water, Wind
-        WebElement checkBoxWater = waitAndGetElement(By.cssSelector(".label-checkbox:nth-child(1)"), 3);
+        WebElement checkBoxWater = waitAndGetElement(By.xpath("//label[normalize-space()='Water']"));
         checkBoxWater.click();
 
-        WebElement checkBoxWind = waitAndGetElement(By.cssSelector(".label-checkbox:nth-child(3)"), 3);
+        WebElement checkBoxWind = waitAndGetElement(By.xpath("//label[normalize-space()='Wind']"));
         checkBoxWind.click();
 
         //7. Select radio selen
-        WebElement radioSelen = waitAndGetElement(By.cssSelector(".label-radio:nth-child(4)"), 3);
+        WebElement radioSelen = waitAndGetElement(By.xpath("//label[normalize-space()='Selen']"));
         radioSelen.click();
 
         //8. Select in dropdown Yellow
-        WebElement colorsDropDown = waitAndGetElement(By.cssSelector("div.colors .uui-form-element"), 2);
+        WebElement colorsDropDown = waitAndGetElement(By.cssSelector("div.colors .uui-form-element"));
         colorsDropDown.click();
 
-        WebElement yellow = waitAndGetElement(By.xpath("//*[text()='Yellow']"), 1);
+        WebElement yellow = waitAndGetElement(By.xpath("//*[text()='Yellow']"));
         yellow.click();
 
         //9. Assert that
         //for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
-        List<WebElement> logList = waitAndGetListOfElements(By.cssSelector(".logs>li"), 2);
+        List<WebElement> logList = waitAndGetListOfElements(By.cssSelector(".logs>li"));
         assertEquals(logList.size(), 4);
 
         List<String> filteredLogs = logList.stream()
