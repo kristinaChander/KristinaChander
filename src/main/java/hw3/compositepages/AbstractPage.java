@@ -1,8 +1,8 @@
-package hw3;
+package hw3.compositepages;
 
 import org.openqa.selenium.WebDriver;
 
-public class AbstractPage extends AbstractPageComposite {
+public abstract class AbstractPage extends AbstractPageComposite {
     protected HeaderMenuComposite headerMenuComposite;
 
     protected AbstractPage(WebDriver driver) {
@@ -10,4 +10,7 @@ public class AbstractPage extends AbstractPageComposite {
         headerMenuComposite = new HeaderMenuComposite(driver);
     }
 
+    public HeaderMenuComposite getHeaderMenuComposite() {
+        return headerMenuComposite;
+    }
 }

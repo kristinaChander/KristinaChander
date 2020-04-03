@@ -1,9 +1,9 @@
-package hw3;
+package hw3.compositepages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class AbstractPageComposite {
+public abstract class AbstractPageComposite {
 
     protected WebDriver driver;
 

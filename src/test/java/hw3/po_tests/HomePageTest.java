@@ -1,12 +1,18 @@
 package hw3.po_tests;
 
+import hw3.AbstractTestBase;
+import hw3.voidpo.HomePage;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class HomePageTest extends AbstractTestBase {
 
+
+
     @Test
     public void logInAndFindTabsAndFrameTest() {
+        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         SoftAssert sa = new SoftAssert();
         //pageTitle
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");

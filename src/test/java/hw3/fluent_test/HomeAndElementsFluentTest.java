@@ -1,6 +1,8 @@
-package hw3.po_tests;
+package hw3.fluent_test;
 
 import hw3.AbstractTestBase;
+import hw3.fluentpo.ElementsPageFluent;
+import hw3.fluentpo.HomePageFluent;
 import hw3.voidpo.ElementsPage;
 import hw3.voidpo.HomePage;
 import org.openqa.selenium.support.PageFactory;
@@ -9,37 +11,31 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class HomeAndElementsPageTest extends AbstractTestBase {
-
+public class HomeAndElementsFluentTest extends AbstractTestBase {
     @Test
     public void logInGoToElementsTest() {
-        ElementsPage elementsPage = PageFactory.initElements(driver, ElementsPage.class);
-        HomePage homePage = PageFactory.initElements(driver,HomePage.class);
+        ElementsPageFluent elementsPage = new ElementsPageFluent(driver);
+        HomePageFluent homePage = new HomePageFluent(driver);
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
         assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
-        homePage.openLogInForm();
-        homePage.enterUserName();
-        homePage.enterPassword();
-        homePage.clickLoginBtn();
+        homePage.openLogInForm()
+                .enterUserName()
+                .enterPassword()
+                .clickLoginBtn();
 
         assertEquals(homePage.getLoggedInUserName(), "ROMAN IOVLEV");
 
         //getToElementsPage
-        homePage.clickOnTheServiceTab();
-        homePage.clickOnTheDifferentElements();
+        homePage.clickOnTheServiceTab()
+                .clickOnTheDifferentElements()
+                .clickWaterCheckBox()//Select checkboxes Water, Wind
+                .clickWindCheckBox()
+                .clickSelenRadio()//Select radio selen
+                .clickColorsDropDown()
+                .clickYellow();//Select in dropdown Yellow
 
-        //Select checkboxes Water, Wind
-        elementsPage.clickWaterCheckBox();
-        elementsPage.clickWindCheckBox();
-
-        //Select radio selen
-        elementsPage.clickSelenRadio();
-
-        //Select in dropdown Yellow
-        elementsPage.clickColorsDropDown();
-        elementsPage.clickYellow();
 
         //for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded to the status of radio button

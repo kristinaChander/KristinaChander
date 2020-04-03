@@ -1,13 +1,12 @@
-package hw3;
+package hw3.compositepages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
-public class HomePageComposite extends AbstractPage{
+public class HomePageComp extends AbstractPage{
     private HomePageMainContentComposite homePageMainContentComposite;
     private LeftHandMenu leftHandMenu;
 
-    public HomePageComposite(WebDriver driver){
+    public HomePageComp(WebDriver driver){
         super(driver);
         homePageMainContentComposite = new HomePageMainContentComposite(driver);
         leftHandMenu = new LeftHandMenu(driver);

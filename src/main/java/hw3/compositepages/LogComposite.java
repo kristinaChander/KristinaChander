@@ -1,4 +1,4 @@
-package hw3;
+package hw3.compositepages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +23,6 @@ public class LogComposite extends AbstractPageComposite {
         return logList.stream()
                 .map(s -> s.getText().substring(9))
                 .collect(Collectors.toList());
-
     }
 
 }

@@ -1,4 +1,4 @@
-package hw3.po_tests;
+package hw3;
 
 import hw3.voidpo.ElementsPage;
 import hw3.voidpo.HomePage;
@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractTestBase {
 
     protected WebDriver driver;
-    protected HomePage homePage;
-    protected ElementsPage elementsPage;
+
+
 
     @BeforeClass
     public static void setupClass() {
@@ -28,8 +28,8 @@ public abstract class AbstractTestBase {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        homePage = PageFactory.initElements(driver, HomePage.class);
-        elementsPage = PageFactory.initElements(driver, ElementsPage.class);
+
+
     }
 
     @AfterMethod
