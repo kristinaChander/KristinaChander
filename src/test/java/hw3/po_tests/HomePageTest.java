@@ -8,25 +8,22 @@ import org.testng.asserts.SoftAssert;
 
 public class HomePageTest extends AbstractTestBase {
 
-
-
     @Test
     public void logInAndFindTabsAndFrameTest() {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         SoftAssert sa = new SoftAssert();
         //pageTitle
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.get(credentialsHelper.getProperty("url"));
 
         sa.assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
         homePage.openLogInForm();
-        homePage.enterUserName();
-        homePage.enterPassword();
+        homePage.enterUserName(credentialsHelper.getProperty("login"));
+        homePage.enterPassword(credentialsHelper.getProperty("password"));
         homePage.clickLoginBtn();
 
         sa.assertEquals(homePage.getLoggedInUserName(), "ROMAN IOVLEV");
-
 
         //headerMenuTest
         sa.assertEquals(homePage.getHeaderTabCount(), 4);

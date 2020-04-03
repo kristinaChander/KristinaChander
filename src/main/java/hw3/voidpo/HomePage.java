@@ -52,12 +52,12 @@ public class HomePage {
         humanIcon.click();
     }
 
-    public void enterUserName() {
-        loginField.sendKeys("Roman");
+    public void enterUserName(String userName) {
+        loginField.sendKeys(userName);
     }
 
-    public void enterPassword() {
-        passwordField.sendKeys("Jdi1234");
+    public void enterPassword(String password) {
+        passwordField.sendKeys(password);
     }
 
     public void clickLoginBtn() {

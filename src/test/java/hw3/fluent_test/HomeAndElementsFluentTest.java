@@ -3,9 +3,6 @@ package hw3.fluent_test;
 import hw3.AbstractTestBase;
 import hw3.fluentpo.ElementsPageFluent;
 import hw3.fluentpo.HomePageFluent;
-import hw3.voidpo.ElementsPage;
-import hw3.voidpo.HomePage;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -16,13 +13,13 @@ public class HomeAndElementsFluentTest extends AbstractTestBase {
     public void logInGoToElementsTest() {
         ElementsPageFluent elementsPage = new ElementsPageFluent(driver);
         HomePageFluent homePage = new HomePageFluent(driver);
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.get(credentialsHelper.getProperty("url"));
         assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
         homePage.openLogInForm()
-                .enterUserName()
-                .enterPassword()
+                .enterUserName(credentialsHelper.getProperty("login"))
+                .enterPassword(credentialsHelper.getProperty("password"))
                 .clickLoginBtn();
 
         assertEquals(homePage.getLoggedInUserName(), "ROMAN IOVLEV");

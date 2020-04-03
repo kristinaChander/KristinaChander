@@ -2,7 +2,7 @@ package hw3.compositepages;
 
 import org.openqa.selenium.WebDriver;
 
-public class ElementsPageComp extends AbstractPage {
+public class ElementsPage extends AbstractPage {
 
     private ElementMetalColorComposite elementMetalColorComposite;
     private LogComposite logComposite;
@@ -15,7 +15,7 @@ public class ElementsPageComp extends AbstractPage {
         return logComposite;
     }
 
-    public ElementsPageComp(WebDriver driver){
+    public ElementsPage(WebDriver driver){
         super(driver);
         elementMetalColorComposite = new ElementMetalColorComposite(driver);
         logComposite = new LogComposite(driver);

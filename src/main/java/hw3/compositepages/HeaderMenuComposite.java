@@ -41,12 +41,12 @@ public class HeaderMenuComposite extends AbstractPageComposite  {
         humanIcon.click();
     }
 
-    public void enterUserName(){
-        loginField.sendKeys("Roman");
+    public void enterUserName(String username){
+        loginField.sendKeys(username);
     }
 
-    public void enterPassword(){
-        passwordField.sendKeys("Jdi1234");
+    public void enterPassword(String password){
+        passwordField.sendKeys(password);
     }
 
     public void clickLoginBtn(){

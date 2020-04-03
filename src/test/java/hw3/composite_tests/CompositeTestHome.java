@@ -1,7 +1,7 @@
 package hw3.composite_tests;
 
 import hw3.AbstractTestBase;
-import hw3.compositepages.HomePageComp;
+import hw3.compositepages.HomePage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -10,14 +10,14 @@ public class CompositeTestHome extends AbstractTestBase {
     @Test
     public void HomePageLogInAndElementsTest() {
         SoftAssert sa = new SoftAssert();
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
-        HomePageComp homePage = new HomePageComp(driver);
+        driver.get(credentialsHelper.getProperty("url"));
+        HomePage homePage = new HomePage(driver);
 
         sa.assertEquals(driver.getTitle(), "Home Page");
 
         homePage.getHeaderMenuComposite().openLogInForm();
-        homePage.getHeaderMenuComposite().enterUserName();
-        homePage.getHeaderMenuComposite().enterPassword();
+        homePage.getHeaderMenuComposite().enterUserName(credentialsHelper.getProperty("login"));
+        homePage.getHeaderMenuComposite().enterPassword(credentialsHelper.getProperty("password"));
         homePage.getHeaderMenuComposite().clickLoginBtn();
 
         sa.assertEquals(homePage.getHeaderMenuComposite().getLoggedInUserName(), "ROMAN IOVLEV");

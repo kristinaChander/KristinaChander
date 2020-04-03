@@ -15,13 +15,13 @@ public class HomeAndElementsPageTest extends AbstractTestBase {
     public void logInGoToElementsTest() {
         ElementsPage elementsPage = PageFactory.initElements(driver, ElementsPage.class);
         HomePage homePage = PageFactory.initElements(driver,HomePage.class);
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.get(credentialsHelper.getProperty("url"));
         assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
         homePage.openLogInForm();
-        homePage.enterUserName();
-        homePage.enterPassword();
+        homePage.enterUserName(credentialsHelper.getProperty("login"));
+        homePage.enterPassword(credentialsHelper.getProperty("password"));
         homePage.clickLoginBtn();
 
         assertEquals(homePage.getLoggedInUserName(), "ROMAN IOVLEV");

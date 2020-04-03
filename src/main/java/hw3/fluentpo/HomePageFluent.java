@@ -60,13 +60,13 @@ public class HomePageFluent {
         return this;
     }
 
-    public HomePageFluent enterUserName() {
-        loginField.sendKeys("Roman");
+    public HomePageFluent enterUserName(String userName) {
+        loginField.sendKeys(userName);
         return this;
     }
 
-    public HomePageFluent enterPassword() {
-        passwordField.sendKeys("Jdi1234");
+    public HomePageFluent enterPassword(String password) {
+        passwordField.sendKeys(password);
         return this;
     }
 

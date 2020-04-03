@@ -1,9 +1,8 @@
 package hw3.composite_tests;
 
 import hw3.AbstractTestBase;
-import hw3.compositepages.ElementsPageComp;
-import hw3.compositepages.HomePageComp;
-import org.openqa.selenium.support.PageFactory;
+import hw3.compositepages.ElementsPage;
+import hw3.compositepages.HomePage;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -13,17 +12,16 @@ public class CompositeTestHomeAndElements extends AbstractTestBase {
 
     @Test
     public void logInGoToElementsTest() {
+        ElementsPage elementsPage = new ElementsPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        ElementsPageComp elementsPage = PageFactory.initElements(driver, ElementsPageComp.class);
-        HomePageComp homePage = PageFactory.initElements(driver, HomePageComp.class);
-
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.get(credentialsHelper.getProperty("url"));
         assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
         homePage.getHeaderMenuComposite().openLogInForm();
-        homePage.getHeaderMenuComposite().enterUserName();
-        homePage.getHeaderMenuComposite().enterPassword();
+        homePage.getHeaderMenuComposite().enterUserName(credentialsHelper.getProperty("login"));
+        homePage.getHeaderMenuComposite().enterPassword(credentialsHelper.getProperty("password"));
         homePage.getHeaderMenuComposite().clickLoginBtn();
 
         assertEquals(homePage.getHeaderMenuComposite().getLoggedInUserName(), "ROMAN IOVLEV");
@@ -52,6 +50,5 @@ public class CompositeTestHomeAndElements extends AbstractTestBase {
         assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("metal: value changed to Selen"));
         assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("Wind: condition changed to true"));
         assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("Water: condition changed to true"));
-
     }
 }
