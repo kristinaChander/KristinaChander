@@ -1,4 +1,4 @@
-package hw3;
+package hw3.voidpo;
 
 
 import org.openqa.selenium.WebElement;
@@ -9,25 +9,25 @@ import java.util.stream.Collectors;
 
 public class HomePage {
 
-    @FindBy(id = "user-icon" )
+    @FindBy(id = "user-icon")
     private WebElement humanIcon;
 
-    @FindBy(id ="name")
+    @FindBy(id = "name")
     private WebElement loginField;
 
     @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(id="login-button")
+    @FindBy(id = "login-button")
     private WebElement loginBtn;
 
     @FindBy(id = "user-name")
     private WebElement loggedInUsername;
 
-    @FindBy(css = "header ul.uui-navigation.nav.navbar-nav.m-l8>li>a")
+    @FindBy(css = "header .m-l8>li>a")
     private List<WebElement> headerMenuElements;
 
-    @FindBy(className= "benefit-icon")
+    @FindBy(className = "benefit-icon")
     private List<WebElement> fourImages;
 
     @FindBy(css = "span.benefit-txt")
@@ -39,86 +39,82 @@ public class HomePage {
     @FindBy(id = "frame-button")
     private WebElement iFrameButton;
 
-    @FindBy(css = ".sidebar-menu>li>a" )
+    @FindBy(css = ".sidebar-menu>li>a")
     private List<WebElement> leftSideMenuElements;
 
     @FindBy(linkText = "SERVICE")
     private WebElement menuService;
 
-
-
     @FindBy(linkText = "DIFFERENT ELEMENTS")
     private WebElement differentElements;
 
-
-
-
-    public void openLogInForm(){
+    public void openLogInForm() {
         humanIcon.click();
     }
 
-    public void enterUserName(){
+    public void enterUserName() {
         loginField.sendKeys("Roman");
     }
 
-    public void enterPassword(){
+    public void enterPassword() {
         passwordField.sendKeys("Jdi1234");
     }
 
-    public void clickLoginBtn(){
+    public void clickLoginBtn() {
         loginBtn.click();
     }
 
-    public String getLoggedInUserName(){
+    public String getLoggedInUserName() {
         return loggedInUsername.getText();
     }
 
-    public int getHeaderTabCount(){
+    public int getHeaderTabCount() {
         return headerMenuElements.size();
     }
 
-    public List<String> getHeaderTabNamesList(){
+    public List<String> getHeaderTabNamesList() {
         return headerMenuElements.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
-    public int getImagesCount(){
+    public int getImagesCount() {
         return fourImages.size();
     }
 
-    public int getTextsCount(){
+    public int getTextsCount() {
         return fourTextsUnderImages.size();
     }
 
-    public List<String> getBenefitTexts(){
+    public List<String> getBenefitTexts() {
         return fourTextsUnderImages.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
-     public WebElement getIframe(){
+
+    public WebElement getIframe() {
         return iFrame;
-     }
+    }
 
-     public WebElement getIframeButton(){
+    public WebElement getIframeButton() {
         return iFrameButton;
-     }
+    }
 
-     public int getLeftSideTabsCount(){
+    public int getLeftSideTabsCount() {
         return leftSideMenuElements.size();
-     }
+    }
 
-     public List<String> getLeftSideTabListText(){
+    public List<String> getLeftSideTabListText() {
         return leftSideMenuElements.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
-     }
+    }
 
-    public void clickOnTheServiceTab(){
+    public void clickOnTheServiceTab() {
         menuService.click();
     }
 
-    public void clickOnTheDifferentElements(){
+    public void clickOnTheDifferentElements() {
         differentElements.click();
     }
 }

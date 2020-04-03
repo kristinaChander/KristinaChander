@@ -1,4 +1,4 @@
-package hw3;
+package hw3.voidpo;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 public class ElementsPage  {
 
-    @FindBy(css = ".label-checkbox:nth-child(1)")
+    @FindBy(xpath = "//label[normalize-space()='Water']")
     private WebElement checkBoxWater;
 
-    @FindBy(css = ".label-checkbox:nth-child(3)")
+    @FindBy(xpath = "//label[normalize-space()='Wind']")
     private WebElement checkBoxWind;
 
-    @FindBy(css = ".label-radio:nth-child(4)" )
+    @FindBy(xpath = "//label[normalize-space()='Selen']" )
     private WebElement radioSelen;
 
     @FindBy(css = "div.colors .uui-form-element")

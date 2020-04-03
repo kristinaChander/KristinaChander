@@ -1,4 +1,4 @@
-package hw3;
+package hw3.po_tests;
 
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -39,7 +39,7 @@ public class HomePageTest extends AbstractTestBase {
         sa.assertTrue(homePage.getBenefitTexts().contains("To be flexible and\n" + "customizable"));
         sa.assertTrue(homePage.getBenefitTexts().contains("To be multiplatform"));
         sa.assertTrue(homePage.getBenefitTexts().contains("Already have good base\n" + "(about 20 internal and\n" +
-                "some external projects),\n" + "wish to get more…"));
+                "some external projects),\n" + "wish to get more\u2026"));
 
 
         //iFrameTest

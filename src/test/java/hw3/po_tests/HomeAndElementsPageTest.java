@@ -1,4 +1,4 @@
-package hw3;
+package hw3.po_tests;
 
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
