@@ -1,5 +1,6 @@
-package hw3.fluentpo;
+package hw3.ex1;
 
+import hw3.ex2.ElementsPageFluent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

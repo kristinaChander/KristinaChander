@@ -1,4 +1,4 @@
-package hw3.voidpo;
+package hw3.ex2;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ElementsPage  {
+public class ElementsPageVoid {
 
     @FindBy(xpath = "//label[normalize-space()='Water']")
     private WebElement checkBoxWater;

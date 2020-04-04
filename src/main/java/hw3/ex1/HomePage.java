@@ -1,8 +1,9 @@
-package hw3.compositepages;
+package hw3.ex1;
 
+import hw3.compositepages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends AbstractPage{
+public class HomePage extends AbstractPage {
     private HomePageMainContentComposite homePageMainContentComposite;
     private LeftHandMenu leftHandMenu;
 

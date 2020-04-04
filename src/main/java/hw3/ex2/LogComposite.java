@@ -1,5 +1,6 @@
-package hw3.compositepages;
+package hw3.ex2;
 
+import hw3.compositepages.AbstractPageComposite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

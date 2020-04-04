@@ -1,4 +1,4 @@
-package hw3.voidpo;
+package hw3.ex1;
 
 
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HomePage {
+public class HomePageVoid {
 
     @FindBy(id = "user-icon")
     private WebElement humanIcon;

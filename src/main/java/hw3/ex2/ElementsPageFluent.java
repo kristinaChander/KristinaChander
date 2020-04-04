@@ -1,4 +1,4 @@
-package hw3.fluentpo;
+package hw3.ex2;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

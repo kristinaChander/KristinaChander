@@ -1,11 +1,10 @@
-package hw3.composite_tests;
+package hw3.ex1;
 
 import hw3.AbstractTestBase;
-import hw3.compositepages.HomePage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class CompositeTestHome extends AbstractTestBase {
+public class HomeCompositeTest extends AbstractTestBase {
 
     @Test
     public void HomePageLogInAndElementsTest() {

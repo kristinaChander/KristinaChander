@@ -1,5 +1,6 @@
-package hw3.compositepages;
+package hw3.ex2;
 
+import hw3.compositepages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 public class ElementsPage extends AbstractPage {

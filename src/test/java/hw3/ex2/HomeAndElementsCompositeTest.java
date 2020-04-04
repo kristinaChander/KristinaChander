@@ -1,14 +1,13 @@
-package hw3.composite_tests;
+package hw3.ex2;
 
 import hw3.AbstractTestBase;
-import hw3.compositepages.ElementsPage;
-import hw3.compositepages.HomePage;
+import hw3.ex1.HomePage;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class CompositeTestHomeAndElements extends AbstractTestBase {
+public class HomeAndElementsCompositeTest extends AbstractTestBase {
 
     @Test
     public void logInGoToElementsTest() {

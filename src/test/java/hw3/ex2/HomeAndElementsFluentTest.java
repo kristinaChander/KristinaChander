@@ -1,8 +1,7 @@
-package hw3.fluent_test;
+package hw3.ex2;
 
 import hw3.AbstractTestBase;
-import hw3.fluentpo.ElementsPageFluent;
-import hw3.fluentpo.HomePageFluent;
+import hw3.ex1.HomePageFluent;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
