@@ -3,7 +3,7 @@
 
     <test name="Selenium test1">
         <classes>
-            <class name="hw2.ex1.HomePageVoidAndIframeTest"/>
+            <class name="hw2.ex1.HomePageAndIframeTest"/>
         </classes>
     </test>
 

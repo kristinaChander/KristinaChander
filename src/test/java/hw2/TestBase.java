@@ -41,10 +41,10 @@ public abstract class TestBase {
         return new WebDriverWait(driver, TIME_OUT_IN_SECONDS)
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
-//
-//    //Close Browser
-//    @AfterMethod
-//    public void teardown() {
-//        driver.quit();
-//    }
+
+    //Close Browser
+    @AfterMethod
+    public void teardown() {
+        driver.quit();
+    }
 }

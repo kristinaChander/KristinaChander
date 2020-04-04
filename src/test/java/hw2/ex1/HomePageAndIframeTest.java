@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HomePageVoidAndIframeTest extends TestBase {
+public class HomePageAndIframeTest extends TestBase {
 
     @Test
     public void homePageTest() {
