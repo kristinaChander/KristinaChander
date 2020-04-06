@@ -4,8 +4,9 @@ import hw3.AbstractTestBase;
 import hw3.ex1.HomePage;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class HomeAndElementsCompositeTest extends AbstractTestBase {
 
@@ -30,24 +31,24 @@ public class HomeAndElementsCompositeTest extends AbstractTestBase {
         homePage.getHeaderMenuComposite().clickOnTheDifferentElements();
 
         //Select checkboxes Water, Wind
-        elementsPage.getElementMetalColorComposite().clickWaterCheckBox();
-        elementsPage.getElementMetalColorComposite().clickWindCheckBox();
+        elementsPage.getElementMetalColorComposite().clickCheckButtonsFromList("Water");
+        elementsPage.getElementMetalColorComposite().clickCheckButtonsFromList("Wind");
 
         //Select radio selen
-        elementsPage.getElementMetalColorComposite().clickSelenRadio();
+        elementsPage.getElementMetalColorComposite().clickRadioButtonsFromList("Selen");
 
         //Select in dropdown Yellow
-        elementsPage.getElementMetalColorComposite().clickColorsDropDown();
-        elementsPage.getElementMetalColorComposite().clickYellow();
+        elementsPage.getElementMetalColorComposite().chooseColorFromDropDown("Yellow");
 
         //for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
         assertEquals(elementsPage.getLogComposite().getLogEntryCount(), 4);
 
-        assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("Colors: value changed to Yellow"));
-        assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("metal: value changed to Selen"));
-        assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("Wind: condition changed to true"));
-        assertTrue(elementsPage.getLogComposite().getFilteredLogsText().contains("Water: condition changed to true"));
+        assertEquals(elementsPage.getLogComposite().getFilteredLogsText(),
+                Arrays.asList(
+                        "Colors: value changed to Yellow",  "metal: value changed to Selen",
+                        "Wind: condition changed to true", "Water: condition changed to true")
+        );
     }
 }

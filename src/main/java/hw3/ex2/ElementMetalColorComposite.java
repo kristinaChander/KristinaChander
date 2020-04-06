@@ -5,44 +5,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
+import static hw3.ex2.ElementSelectUtils.chooseFromList;
+
 public class ElementMetalColorComposite extends AbstractPageComposite {
-    @FindBy(xpath = "//label[normalize-space()='Water']")
-    private WebElement checkBoxWater;
-
-    @FindBy(xpath = "//label[normalize-space()='Wind']")
-    private WebElement checkBoxWind;
-
-    @FindBy(xpath = "//label[normalize-space()='Selen']" )
-    private WebElement radioSelen;
-
-    @FindBy(css = "div.colors .uui-form-element")
-    private WebElement colorsDropDown;
-
-    @FindBy(xpath = "//*[text()='Yellow']")
-    private WebElement yellow;
 
     public ElementMetalColorComposite(WebDriver driver) {
         super(driver);
     }
 
-    public void clickWaterCheckBox(){
-        checkBoxWater.click();
-    }
+    @FindBy(css = ".label-checkbox")
+    private List<WebElement> checkBoxList;
 
-    public void clickWindCheckBox(){
-        checkBoxWind.click();
-    }
+    @FindBy(css = ".label-radio")
+    private List<WebElement> radioButtonList;
 
-    public void clickSelenRadio(){
-        radioSelen.click();
-    }
+    @FindBy(css = "select[class='uui-form-element']")
+    private WebElement colorsDropDown;
 
-    public void clickColorsDropDown(){
+    @FindBy(css = "option")
+    private List<WebElement> colorsList;
+
+    public void chooseColorFromDropDown(String colorName) {
         colorsDropDown.click();
+        chooseFromList(colorName, colorsList);
     }
 
-    public void clickYellow(){
-        yellow.click();
+    public void clickCheckButtonsFromList(String checkBoxName){
+        chooseFromList(checkBoxName, checkBoxList);
     }
 
+    public void clickRadioButtonsFromList(String radioButtonName){
+        chooseFromList(radioButtonName, radioButtonList);
+    }
 }

@@ -5,15 +5,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+
 public class HomePageVoidTest extends AbstractTestBase {
 
     @Test
     public void logInAndFindTabsAndFrameTest() {
         HomePageVoid homePageVoid = PageFactory.initElements(driver, HomePageVoid.class);
         SoftAssert sa = new SoftAssert();
+
         //pageTitle
         driver.get(credentialsHelper.getProperty("url"));
-
         sa.assertEquals(driver.getTitle(), "Home Page");
 
         //logInAndCheckUserName
@@ -26,10 +28,11 @@ public class HomePageVoidTest extends AbstractTestBase {
 
         //headerMenuTest
         sa.assertEquals(homePageVoid.getHeaderTabCount(), 4);
-        sa.assertTrue(homePageVoid.getHeaderTabNamesList().contains("HOME"));
-        sa.assertTrue(homePageVoid.getHeaderTabNamesList().contains("CONTACT FORM"));
-        sa.assertTrue(homePageVoid.getHeaderTabNamesList().contains("SERVICE"));
-        sa.assertTrue(homePageVoid.getHeaderTabNamesList().contains("METALS & COLORS"));
+
+        sa.assertEquals(homePageVoid.getHeaderTabNamesList(),
+                Arrays.asList(
+                        "HOME", "CONTACT FORM", "SERVICE" , "METALS & COLORS")
+        );
 
         // fourImagesTest
         sa.assertEquals(homePageVoid.getImagesCount(), 4);
@@ -37,12 +40,13 @@ public class HomePageVoidTest extends AbstractTestBase {
         //benefitTextsTest
         sa.assertEquals(homePageVoid.getTextsCount(), 4);
 
-        sa.assertTrue(homePageVoid.getBenefitTexts().contains("To include good practices\n" + "and ideas from successful\n" + "EPAM project"));
-        sa.assertTrue(homePageVoid.getBenefitTexts().contains("To be flexible and\n" + "customizable"));
-        sa.assertTrue(homePageVoid.getBenefitTexts().contains("To be multiplatform"));
-        sa.assertTrue(homePageVoid.getBenefitTexts().contains("Already have good base\n" + "(about 20 internal and\n" +
-                "some external projects),\n" + "wish to get more\u2026"));
-
+        sa.assertEquals(homePageVoid.getBenefitTexts(),
+                Arrays.asList(
+                        "To include good practices\n" + "and ideas from successful\n" + "EPAM project", "To be flexible and\n" + "customizable",
+                        "To be multiplatform",
+                        "Already have good base\n" + "(about 20 internal and\n" + "some external projects),\n" + "wish to get more\u2026"
+                )
+        );
 
         //iFrameTest
         sa.assertNotNull(homePageVoid.getIframe());
@@ -50,16 +54,14 @@ public class HomePageVoidTest extends AbstractTestBase {
         sa.assertNotNull(homePageVoid.getIframeButton());
         driver.switchTo().defaultContent();
 
-
         //LeftSideMenuTest
-
         sa.assertEquals(homePageVoid.getLeftSideTabsCount(), 5);
 
-        sa.assertTrue(homePageVoid.getLeftSideTabListText().contains("Home"));
-        sa.assertTrue(homePageVoid.getLeftSideTabListText().contains("Contact form"));
-        sa.assertTrue(homePageVoid.getLeftSideTabListText().contains("Service"));
-        sa.assertTrue(homePageVoid.getLeftSideTabListText().contains("Metals & Colors"));
-        sa.assertTrue(homePageVoid.getLeftSideTabListText().contains("Elements packs"));
+        sa.assertEquals(homePageVoid.getLeftSideTabListText(),
+                Arrays.asList(
+                        "Home", "Contact form", "Service", "Metals & Colors", "Elements packs"
+                )
+        );
 
         sa.assertAll();
     }

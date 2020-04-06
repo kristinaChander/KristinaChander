@@ -1,75 +1,59 @@
 package hw3.ex2;
 
+import hw3.compositepages.AbstractPageComposite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ElementsPageFluent {
+import static hw3.ex2.ElementSelectUtils.chooseFromList;
 
-    private WebDriver driver;
+public class ElementsPageFluent extends AbstractPageComposite {
 
-    public ElementsPageFluent(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+    public ElementsPageFluent(WebDriver driver) {
+        super(driver);
     }
 
-    @FindBy(xpath = "//label[normalize-space()='Water']")
-    private WebElement checkBoxWater;
+    @FindBy(css = ".label-checkbox")
+    private List<WebElement> checkBoxList;
 
-    @FindBy(xpath = "//label[normalize-space()='Wind']")
-    private WebElement checkBoxWind;
+    @FindBy(css = ".label-radio")
+    private List<WebElement> radioButtonList;
 
-    @FindBy(xpath = "//label[normalize-space()='Selen']" )
-    private WebElement radioSelen;
-
-    @FindBy(css = "div.colors .uui-form-element")
+    @FindBy(css = "select[class='uui-form-element']")
     private WebElement colorsDropDown;
 
-    @FindBy(xpath = "//*[text()='Yellow']")
-    private WebElement yellow;
+    @FindBy(css = "option")
+    private List<WebElement> colorsList;
 
     @FindBy(css = ".logs>li")
     private List<WebElement> logList;
 
-
-    public ElementsPageFluent clickWaterCheckBox(){
-        checkBoxWater.click();
-        return this;
-    }
-
-    public ElementsPageFluent clickWindCheckBox(){
-        checkBoxWind.click();
-        return this;
-    }
-
-    public ElementsPageFluent clickSelenRadio(){
-        radioSelen.click();
-        return this;
-    }
-
-    public ElementsPageFluent clickColorsDropDown(){
+    public ElementsPageFluent chooseColorFromDropDown(String colorName) {
         colorsDropDown.click();
+        chooseFromList(colorName, colorsList);
         return this;
     }
 
-    public ElementsPageFluent clickYellow(){
-        yellow.click();
+    public ElementsPageFluent clickCheckButtonsFromList(String checkBoxName) {
+        chooseFromList(checkBoxName, checkBoxList);
         return this;
     }
 
-    public int getLogEntryCount(){
+    public ElementsPageFluent clickRadioButtonsFromList(String radioButtonName) {
+        chooseFromList(radioButtonName, radioButtonList);
+        return this;
+    }
+
+    public int getLogEntryCount() {
         return logList.size();
     }
 
-    public List<String> getFilteredLogsText(){
+    public List<String> getFilteredLogsText() {
         return logList.stream()
                 .map(s -> s.getText().substring(9))
                 .collect(Collectors.toList());
-
     }
-
 }

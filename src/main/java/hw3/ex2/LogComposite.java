@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LogComposite extends AbstractPageComposite {
+
     @FindBy(css = ".logs>li")
     private List<WebElement> logList;
 
@@ -25,5 +26,4 @@ public class LogComposite extends AbstractPageComposite {
                 .map(s -> s.getText().substring(9))
                 .collect(Collectors.toList());
     }
-
 }

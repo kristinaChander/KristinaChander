@@ -1,20 +1,18 @@
 package hw3.ex1;
 
+import hw3.compositepages.AbstractPageComposite;
 import hw3.ex2.ElementsPageFluent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HomePageFluent {
-    private WebDriver driver;
+public class HomePageFluent extends AbstractPageComposite {
 
-    public HomePageFluent(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+    public HomePageFluent(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(id = "user-icon")

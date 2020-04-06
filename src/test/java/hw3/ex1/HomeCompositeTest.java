@@ -4,28 +4,37 @@ import hw3.AbstractTestBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+
 public class HomeCompositeTest extends AbstractTestBase {
 
     @Test
     public void HomePageLogInAndElementsTest() {
         SoftAssert sa = new SoftAssert();
+
+        //go to page
         driver.get(credentialsHelper.getProperty("url"));
         HomePage homePage = new HomePage(driver);
 
+        //assert title
         sa.assertEquals(driver.getTitle(), "Home Page");
 
+        //log in
         homePage.getHeaderMenuComposite().openLogInForm();
         homePage.getHeaderMenuComposite().enterUserName(credentialsHelper.getProperty("login"));
         homePage.getHeaderMenuComposite().enterPassword(credentialsHelper.getProperty("password"));
         homePage.getHeaderMenuComposite().clickLoginBtn();
 
+        //assert logged in user name
         sa.assertEquals(homePage.getHeaderMenuComposite().getLoggedInUserName(), "ROMAN IOVLEV");
 
+        //header menu test
         sa.assertEquals(homePage.getHeaderMenuComposite().getHeaderTabCount(), 4);
-        sa.assertTrue(homePage.getHeaderMenuComposite().getHeaderTabNamesList().contains("HOME"));
-        sa.assertTrue(homePage.getHeaderMenuComposite().getHeaderTabNamesList().contains("CONTACT FORM"));
-        sa.assertTrue(homePage.getHeaderMenuComposite().getHeaderTabNamesList().contains("SERVICE"));
-        sa.assertTrue(homePage.getHeaderMenuComposite().getHeaderTabNamesList().contains("METALS & COLORS"));
+
+        sa.assertEquals(homePage.getHeaderMenuComposite().getHeaderTabNamesList(),
+                Arrays.asList(
+                        "HOME", "CONTACT FORM", "SERVICE" , "METALS & COLORS")
+        );
 
         // fourImagesTest
         sa.assertEquals(homePage.getHomePageMainContentComposite().getImagesCount(), 4);
@@ -33,12 +42,13 @@ public class HomeCompositeTest extends AbstractTestBase {
         //benefitTextsTest
         sa.assertEquals(homePage.getHomePageMainContentComposite().getTextsCount(), 4);
 
-        sa.assertTrue(homePage.getHomePageMainContentComposite().getBenefitTexts().contains("To include good practices\n" + "and ideas from successful\n" + "EPAM project"));
-        sa.assertTrue(homePage.getHomePageMainContentComposite().getBenefitTexts().contains("To be flexible and\n" + "customizable"));
-        sa.assertTrue(homePage.getHomePageMainContentComposite().getBenefitTexts().contains("To be multiplatform"));
-        sa.assertTrue(homePage.getHomePageMainContentComposite().getBenefitTexts().contains("Already have good base\n" + "(about 20 internal and\n" +
-                "some external projects),\n" + "wish to get more\u2026"));
-
+        sa.assertEquals(homePage.getHomePageMainContentComposite().getBenefitTexts(),
+                Arrays.asList(
+                        "To include good practices\n" + "and ideas from successful\n" + "EPAM project", "To be flexible and\n" + "customizable",
+                        "To be multiplatform",
+                        "Already have good base\n" + "(about 20 internal and\n" + "some external projects),\n" + "wish to get more\u2026"
+                )
+        );
 
         //iFrameTest
         sa.assertNotNull(homePage.getHomePageMainContentComposite().getIframe());
@@ -46,16 +56,14 @@ public class HomeCompositeTest extends AbstractTestBase {
         sa.assertNotNull(homePage.getHomePageMainContentComposite().getIframeButton());
         driver.switchTo().defaultContent();
 
-
         //LeftSideMenuTest
-
         sa.assertEquals(homePage.getLeftHandMenu().getLeftSideTabsCount(), 5);
 
-        sa.assertTrue(homePage.getLeftHandMenu().getLeftSideTabListText().contains("Home"));
-        sa.assertTrue(homePage.getLeftHandMenu().getLeftSideTabListText().contains("Contact form"));
-        sa.assertTrue(homePage.getLeftHandMenu().getLeftSideTabListText().contains("Service"));
-        sa.assertTrue(homePage.getLeftHandMenu().getLeftSideTabListText().contains("Metals & Colors"));
-        sa.assertTrue(homePage.getLeftHandMenu().getLeftSideTabListText().contains("Elements packs"));
+        sa.assertEquals(homePage.getLeftHandMenu().getLeftSideTabListText(),
+                Arrays.asList(
+                        "Home", "Contact form", "Service", "Metals & Colors", "Elements packs"
+                )
+        );
 
         sa.assertAll();
     }
