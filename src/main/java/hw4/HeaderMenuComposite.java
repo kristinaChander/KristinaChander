@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HeaderMenuComposite extends AbstractPageComposite {
-
-
     @FindBy(linkText = "SERVICE")
     private WebElement menuService;
 
@@ -38,9 +36,6 @@ public class HeaderMenuComposite extends AbstractPageComposite {
     public void clickOnMetalsAndColors(){
         metalsColorLink.click();
     }
-
-
-
 
     public void openLogInForm(){
         humanIcon.click();

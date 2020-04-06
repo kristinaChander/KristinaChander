@@ -1,21 +1,28 @@
 package hw4.ex2;
 
-import hw4.AbstractBaseTesthw4;
+import hw4.AbstractBaseTestHw4;
 import hw4.HomePage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static hw4.ex2.ColorsComposite.*;
-import static hw4.ex2.ElementsComposite.*;
 import static hw4.ex2.MetalsComposite.*;
 import static hw4.ex2.VegetablesComposite.*;
 import static org.testng.Assert.assertEquals;
 
-public class SecondExerciseTest extends AbstractBaseTesthw4 {
+public class SecondExerciseTest extends AbstractBaseTestHw4 {
 
-
-
+    public static final String BLUE = "Blue";
+    public static final String YELLOW = "Yellow";
+    public static final String GREEN = "Green";
     private static final String LIST_SEPARATOR = ", ";
+    public static final String FIRE = "Fire";
+    public static final String WATER = "Water";
+    public static final String WIND = "Wind";
+    public static final String EARTH = "Earth";
+    public static final String BRONZE = "Bronze";
+    public static final String GOLD = "Gold";
+    public static final String SELEN = "Selen";
+
 
     @DataProvider
     public Object[][] testData() {
@@ -23,8 +30,10 @@ public class SecondExerciseTest extends AbstractBaseTesthw4 {
                 {
                     new TestCaseData.Builder()
                         .addElement(EARTH)
-                        .setColors(YELLOW)
-                        .setMetals(GOLD)
+                        .addColor(YELLOW)
+                        .addMetal(GOLD)
+                            .build(),
+                    new ExpectedTestCaseData.Builder()
                         .setExpectedElements(EARTH)
                         .setExpectedColor(YELLOW)
                         .setExpectedMetal(GOLD)
@@ -32,64 +41,72 @@ public class SecondExerciseTest extends AbstractBaseTesthw4 {
                 },
                 {
                     new TestCaseData.Builder()
-                        .addSummary(3)
-                        .addSummary(8)
+                        .addSummary("3")
+                        .addSummary("8")
                         .addVegetable(CUCUMBER)
                         .addVegetable(TOMATO)
-                        .setExpectedSummary(11)
+                            .build(),
+                    new ExpectedTestCaseData.Builder()
+                        .setExpectedSummary("11")
                         .setExpectedVegetables(CUCUMBER + LIST_SEPARATOR + TOMATO)
                         .build()
                 },
                 {
                     new TestCaseData.Builder()
-                        .addSummary(3)
-                        .addSummary(2)
+                        .addSummary("3")
+                        .addSummary("2")
                         .addElement(WIND)
                         .addElement(FIRE)
                         .addElement(WATER)
-                        .setMetals(BRONZE)
+                        .addMetal(BRONZE)
                         .addVegetable(ONION)
-                        .setExpectedSummary(5)
-                        .setExpectedElements(WIND + LIST_SEPARATOR + FIRE + LIST_SEPARATOR + WATER)
+                            .build(),
+                    new ExpectedTestCaseData.Builder()
+                        .setExpectedSummary("5")
+                        .setExpectedElements(WATER + LIST_SEPARATOR + WIND + LIST_SEPARATOR + FIRE)
                         .setExpectedMetal(BRONZE)
                         .setExpectedVegetables(ONION)
                         .build()
                 },
                 {
                     new TestCaseData.Builder()
-                        .addSummary(6)
-                        .addSummary(5)
+                        .addSummary("6")
+                        .addSummary("5")
                         .addElement(WATER)
-                        .setColors(GREEN)
-                        .setMetals(SELEN)
+                        .addColor(GREEN)
+                        .addMetal(SELEN)
                         .addVegetable(VEGETABLES)
                         .addVegetable(CUCUMBER)
                         .addVegetable(TOMATO)
                         .addVegetable(ONION)
-                        .setExpectedSummary(11)
+                        .build(),
+                    new ExpectedTestCaseData.Builder()
+                        .setExpectedSummary("11")
                         .setExpectedElements(WATER)
                         .setExpectedColor(GREEN)
                         .setExpectedMetal(SELEN)
-                        .setExpectedVegetables(VEGETABLES + LIST_SEPARATOR + CUCUMBER + LIST_SEPARATOR + TOMATO + LIST_SEPARATOR + ONION)
+                        .setExpectedVegetables(CUCUMBER + LIST_SEPARATOR + TOMATO + LIST_SEPARATOR + VEGETABLES + LIST_SEPARATOR + ONION)
                         .build()
                 },
                 {
                     new TestCaseData.Builder()
                         .addElement(FIRE)
-                        .setColors(BLUE)
+                        .addColor(BLUE)
                         .addVegetable(CUCUMBER)
                         .addVegetable(TOMATO)
                         .addVegetable(VEGETABLES)
+                            .build(),
+                    new ExpectedTestCaseData.Builder()
                         .setExpectedColor(BLUE)
                         .setExpectedElements(FIRE)
-                        .setExpectedVegetables(TOMATO + LIST_SEPARATOR + ONION)
+                        .setExpectedVegetables(CUCUMBER + LIST_SEPARATOR+ TOMATO + LIST_SEPARATOR + VEGETABLES)
                         .build()
                 }
         };
     }
 
     @Test(dataProvider = "testData")
-    public void logInAndFillFormTest(TestCaseData testCaseData) {
+    public void logInAndFillFormTest(TestCaseData testCaseData, ExpectedTestCaseData expectedTestCaseData) {
         HomePage homePage = new HomePage(driver);
         MetalsAndColorsPage metalsAndColorsPage= new MetalsAndColorsPage(driver);
         //1.open site by url
@@ -105,36 +122,34 @@ public class SecondExerciseTest extends AbstractBaseTesthw4 {
         homePage.getHeaderMenuComposite().clickOnMetalsAndColors();
 
         //4. Fill form on the page
-        metalsAndColorsPage.getSummaryComposite().clickOnNumbers(testCaseData.getSummary());
-        metalsAndColorsPage.getColorsComposite().clickOnColors(testCaseData.getColors());
-        metalsAndColorsPage.getElementsComposite().clickOnElement(testCaseData.getElements());
-        metalsAndColorsPage.getVegetablesComposite().clickOnVegetable(testCaseData.getVegetables());
-        metalsAndColorsPage.getMetalsComposite().clickOnMetals(testCaseData.getMetals());
+        metalsAndColorsPage.getSummaryComposite().chooseNumbers(testCaseData.getSummary());
+        metalsAndColorsPage.getColorsComposite().chooseColor(testCaseData.getColors());
+        metalsAndColorsPage.getMetalsComposite().chooseMetal(testCaseData.getMetals());
+        metalsAndColorsPage.getElementsComposite().chooseElements(testCaseData.getElements());
+        metalsAndColorsPage.getVegetablesComposite().chooseVegetables(testCaseData.getVegetables());
 
         //5. Click “Submit” button
         metalsAndColorsPage.clickSubmitBtn();
 
         //6. Check Results block output on the right-side
-        if(testCaseData.getExpectedSummary()!= null){
-            assertEquals(metalsAndColorsPage.getResultsComposite().getSummaryResult(),"Summary: " + testCaseData.getExpectedSummary());
+        if(expectedTestCaseData.getExpectedSummary()!= null){
+            assertEquals(metalsAndColorsPage.getResultsComposite().getSummaryResult(),"Summary: " + expectedTestCaseData.getExpectedSummary());
         }
 
-        if(testCaseData.getExpectedColor()!= null){
-            assertEquals(metalsAndColorsPage.getResultsComposite().getColorResult(),"Color: " + testCaseData.getExpectedColor());
+        if(expectedTestCaseData.getExpectedColor()!= null){
+            assertEquals(metalsAndColorsPage.getResultsComposite().getColorResult(),"Color: " + expectedTestCaseData.getExpectedColor());
         }
 
-        if(testCaseData.getExpectedMetal()!= null){
-            assertEquals(metalsAndColorsPage.getResultsComposite().getMetalResult(),"Metal: " + testCaseData.getExpectedMetal());
+        if(expectedTestCaseData.getExpectedMetal()!= null){
+            assertEquals(metalsAndColorsPage.getResultsComposite().getMetalResult(),"Metal: " + expectedTestCaseData.getExpectedMetal());
         }
 
-        if(testCaseData.getExpectedElements()!= null){
-            assertEquals(metalsAndColorsPage.getResultsComposite().getElementResult(),"Elements: " + testCaseData.getExpectedElements());
+        if(expectedTestCaseData.getExpectedElements()!= null){
+            assertEquals(metalsAndColorsPage.getResultsComposite().getElementResult(),"Elements: " + expectedTestCaseData.getExpectedElements());
         }
 
-        if(testCaseData.getExpectedVegetables()!= null){
-            assertEquals(metalsAndColorsPage.getResultsComposite().getVegetableResult(),"Vegetables: " + testCaseData.getExpectedVegetables());
+        if(expectedTestCaseData.getExpectedVegetables()!= null){
+            assertEquals(metalsAndColorsPage.getResultsComposite().getVegetableResult(),"Vegetables: " + expectedTestCaseData.getExpectedVegetables());
         }
-
-
     }
 }

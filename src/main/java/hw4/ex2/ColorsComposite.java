@@ -5,66 +5,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ColorsComposite extends AbstractPageComposite {
+import java.util.List;
 
-    public static final String BLUE = "Blue";
-    public static final String YELLOW = "Yellow";
-    public static final String GREEN = "Green";
+import static hw4.ex2.SelectUtils.chooseItemFromList;
+
+public class ColorsComposite extends AbstractPageComposite {
 
     @FindBy(css = "#colors .caret")
     private WebElement colorsDropDown;
 
-    @FindBy(xpath = "//*[@class='text'][text()='Red']")
-    private WebElement redInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Green']")
-    private WebElement greenInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Blue']")
-    private WebElement blueInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Yellow']")
-    private WebElement yellowInDropDown;
+    @FindBy(css = "#colors a")
+    private List <WebElement> colorsList;
 
     public ColorsComposite(WebDriver driver) {
         super(driver);
     }
 
-    public void clickDropDown() {
-        colorsDropDown.click();
-    }
-
-    public void clickRed() {
-        redInDropDown.click();
-    }
-
-    public void clickGreen() {
-        greenInDropDown.click();
-    }
-
-    public void clickBlue() {
-        blueInDropDown.click();
-    }
-
-    public void clickYellow() {
-        yellowInDropDown.click();
-    }
-
-    public void clickOnColors(String color) {
-        if (color == null){
+    public void chooseColor(List <String> colors){
+        if(colors.isEmpty()) {
             return;
         }
-        clickDropDown();
-        switch (color) {
-            case YELLOW:
-                clickYellow();
-                break;
-            case BLUE:
-                clickBlue();
-                break;
-            case GREEN:
-                clickGreen();
-                break;
-        }
+        colorsDropDown.click();
+        chooseItemFromList(colors,colorsList);
     }
 }

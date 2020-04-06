@@ -7,63 +7,18 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static hw4.ex2.SelectUtils.chooseItemFromList;
+
 public class SummaryComposite extends AbstractPageComposite {
 
-    @FindBy(xpath = "//label[text()='2']")
-    private WebElement radioTwo;
-
-    @FindBy(xpath = "//label[text()='3']")
-    private WebElement radioThree;
-
-    @FindBy(xpath = "//label[text()='5']")
-    private WebElement radioFive;
-
-    @FindBy(xpath = "//label[text()='6']")
-    private WebElement radioSix;
-
-    @FindBy(xpath = "//label[text()='8']")
-    private WebElement radioEight;
+    @FindBy(css =".radio label" )
+    private List <WebElement> radioList;
 
     public SummaryComposite(WebDriver driver) {
         super(driver);
     }
-    public void clickRadioTwo(){
-        radioTwo.click();
-    }
-    public void clickRadioThree(){
-        radioThree.click();
-    }
-    public void clickRadioFive(){
-        radioFive.click();
-    }
-    public void clickRadioSix(){
-        radioSix.click();
-    }
-    public void clickRadioEight(){
-        radioEight.click();
-    }
 
-    public void clickOnNumbers(List<Integer> numbers){
-        for (Integer number: numbers) {
-            switch (number){
-                case 2:
-                    clickRadioTwo();
-                    break;
-                case 3:
-                    clickRadioThree();
-                    break;
-                case 5:
-                    clickRadioFive();
-                    break;
-                case 6:
-                    clickRadioSix();
-                    break;
-                case 8:
-                    clickRadioEight();
-                    break;
-            }
-
-        }
+    public void chooseNumbers(List <String> numbers){
+        chooseItemFromList(numbers,radioList);
     }
-
 }

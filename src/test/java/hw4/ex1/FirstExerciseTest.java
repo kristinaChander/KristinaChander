@@ -1,13 +1,13 @@
 package hw4.ex1;
 
-import hw4.AbstractBaseTesthw4;
+import hw4.AbstractBaseTestHw4;
 import hw4.HomePage;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class FirstExerciseTest extends AbstractBaseTesthw4 {
+public class FirstExerciseTest extends AbstractBaseTestHw4 {
 
     @Test
     public void logInEntryDropdownTest(){

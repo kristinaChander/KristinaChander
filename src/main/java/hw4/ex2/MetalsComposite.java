@@ -6,66 +6,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MetalsComposite extends AbstractPageComposite {
+import java.util.List;
 
-    public static final String BRONZE = "Bronze";
-    public static final String GOLD = "Gold";
-    public static final String SELEN = "Selen";
+import static hw4.ex2.SelectUtils.chooseItemFromList;
+
+public class MetalsComposite extends AbstractPageComposite {
 
     @FindBy(css = "#metals .caret")
     private WebElement metalsDropDown;
 
-    @FindBy(xpath = "//*[@class='text'][text()='Gold']")
-    private WebElement goldInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Silver']")
-    private WebElement silverInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Bronze']")
-    private WebElement bronzeInDropDown;
-
-    @FindBy(xpath = "//*[@class='text'][text()='Selen']")
-    private WebElement selenInDropDown;
+    @FindBy(css = "#metals a")
+    private List<WebElement> metalsList;
 
     public MetalsComposite(WebDriver driver) {
         super(driver);
     }
 
-    public void clickOnMetalsDropDown() {
-        metalsDropDown.click();
-    }
-
-    public void clickOnGold() {
-        goldInDropDown.click();
-    }
-
-    public void clickOnSilver() {
-        silverInDropDown.click();
-    }
-
-    public void clickOnSelen() {
-        selenInDropDown.click();
-    }
-
-    public void clickOnBronze() {
-        bronzeInDropDown.click();
-    }
-
-    public void clickOnMetals(String metal) {
-        if (metal == null) {
+    public void chooseMetal(List <String> metals){
+        if(metals.isEmpty()) {
             return;
         }
-        clickOnMetalsDropDown();
-        switch (metal) {
-            case GOLD:
-                clickOnGold();
-                break;
-            case SELEN:
-                clickOnSelen();
-                break;
-            case BRONZE:
-                clickOnBronze();
-                break;
-        }
+        metalsDropDown.click();
+       chooseItemFromList(metals,metalsList);
     }
 }

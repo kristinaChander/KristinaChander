@@ -6,10 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MetalsAndColorsPage extends AbstractPage {
-
-    @FindBy(id = "submit-button")
-    private WebElement submitBtn;
-
     private SummaryComposite summaryComposite;
     private ElementsComposite elementsComposite;
     private ColorsComposite colorsComposite;
@@ -17,6 +13,8 @@ public class MetalsAndColorsPage extends AbstractPage {
     private VegetablesComposite vegetablesComposite;
     private ResultsComposite resultsComposite;
 
+    @FindBy(id = "submit-button")
+    private WebElement submitBtn;
 
     public ResultsComposite getResultsComposite() {
         return resultsComposite;

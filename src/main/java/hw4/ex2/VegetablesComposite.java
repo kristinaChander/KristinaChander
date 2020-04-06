@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static hw4.ex2.SelectUtils.chooseItemFromList;
+
 public class VegetablesComposite extends AbstractPageComposite {
 
     public static final String TOMATO = "Tomato";
@@ -17,63 +19,26 @@ public class VegetablesComposite extends AbstractPageComposite {
     @FindBy(css= "#salad-dropdown .caret")
     private WebElement vegetablesDropDown;
 
-    @FindBy(xpath = "//label[text()='Cucumber']")
-    private WebElement cucumberInDropDown;
+    @FindBy(css = "#salad-dropdown label")
+    private List <WebElement> vegetablesList;
 
-    @FindBy(xpath ="//label[text()='Tomato']")
-    private WebElement tomatoInDropDown;
-
-    @FindBy(xpath = "//label[text()='Vegetables']")
+    @FindBy(xpath = "//a//label[text()='Vegetables']")
     private WebElement vegetablesInDropDown;
-
-    @FindBy(xpath = "//label[text()='Onion']")
-    private WebElement onoionInDropDown;
 
     public VegetablesComposite(WebDriver driver) {
         super(driver);
     }
 
-    public void clickOnVegetablesDropDown(){
-        vegetablesDropDown.click();
-    }
-
-    public void clickOnTomato(){
-        tomatoInDropDown.click();
-    }
-
-    public void clickOnCucumber(){
-        cucumberInDropDown.click();
-    }
-
-    public void clickOnVegetables(){
-        vegetablesDropDown.click();
-    }
-
-    public void clickOnOnion(){
-        onoionInDropDown.click();
-    }
-
-    public void clickOnVegetable(List<String> vegetables){
-        if (vegetables.isEmpty()){
+    public void chooseVegetables(List <String> vegetables){
+        if (vegetables.isEmpty()) {
             return;
         }
-        clickOnVegetablesDropDown();
-        clickOnVegetables();
-        for (String vegetable: vegetables) {
-            switch (vegetable){
-                case TOMATO:
-                    clickOnTomato();
-                    break;
-                case CUCUMBER:
-                    clickOnCucumber();
-                    break;
-                case ONION:
-                    clickOnOnion();
-                    break;
-                case VEGETABLES:
-                    clickOnVegetables();
-                    break;
-            }
+        vegetablesDropDown.click();
+        if (!vegetables.contains("Vegetables")) {
+            vegetablesInDropDown.click();
+        } else {
+            vegetables.remove("Vegetables");
         }
+        chooseItemFromList(vegetables, vegetablesList);
     }
 }

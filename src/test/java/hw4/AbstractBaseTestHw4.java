@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractBaseTesthw4 {
+public abstract class AbstractBaseTestHw4 {
 
     protected WebDriver driver;
     protected PropertiesHelper credentialsHelper;

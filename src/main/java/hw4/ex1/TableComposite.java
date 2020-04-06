@@ -13,12 +13,6 @@ public class TableComposite extends AbstractPageComposite {
     @FindBy(css = "tbody>tr")
     private List<WebElement> tableRows;
 
-
-
-    @FindBy(css = "tbody>tr")
-    private List<WebElement> filteredTableRows;
-
-
     public TableComposite(WebDriver driver) {
         super(driver);
     }
@@ -28,7 +22,7 @@ public class TableComposite extends AbstractPageComposite {
     }
 
     public List<String> getTableTexts(){
-        List<String> tableTexts = filteredTableRows.stream()
+        List<String> tableTexts = tableRows.stream()
                 .map(s->s.getText().toLowerCase())
                 .collect(Collectors.toList());
         return tableTexts;

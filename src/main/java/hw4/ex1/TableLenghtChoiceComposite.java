@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class TableLenghtChoiceComposite extends AbstractPageComposite {
+
     @FindBy(css = "#table-with-pages_length .uui-form-element")
     private WebElement tableWithPageLength;
 
@@ -17,7 +18,7 @@ public class TableLenghtChoiceComposite extends AbstractPageComposite {
     }
 
     public int getDefaultTableLength(){
-        return Integer.valueOf(tableWithPageLength.getText().split("\n")[0]).intValue();
+        return Integer.valueOf(tableWithPageLength.getText().split("\n")[0]);
     }
 
     public void changeTableLengthToTen(){
