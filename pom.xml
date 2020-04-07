@@ -101,12 +101,23 @@
         <profile>
             <id>HW2AllTests</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw2/HW2AllTests.xml</suite.xml>
             </properties>
         </profile>
+
+        <profile>
+            <id>HW3AllTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw3/HW3AllTests.xml</suite.xml>
+            </properties>
+        </profile>
+
     </profiles>
 
     <build>
