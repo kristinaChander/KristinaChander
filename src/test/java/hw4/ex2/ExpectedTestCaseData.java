@@ -1,8 +1,5 @@
 package hw4.ex2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ExpectedTestCaseData {
 
 
@@ -81,8 +78,8 @@ public class ExpectedTestCaseData {
             return this;
         }
 
-        public ExpectedTestCaseData build(){
-            return new ExpectedTestCaseData(expectedSummary,expectedElements,expectedColor,expectedMetal,expectedVegetables);
+        public ExpectedTestCaseData build() {
+            return new ExpectedTestCaseData(expectedSummary, expectedElements, expectedColor, expectedMetal, expectedVegetables);
         }
     }
 }

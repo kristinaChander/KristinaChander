@@ -55,17 +55,17 @@ public class TestCaseData {
             vegetables = new ArrayList<>();
         }
 
-        public Builder addSummary(String value){
+        public Builder addSummary(String value) {
             summary.add(value);
             return this;
         }
 
-        public Builder addElement(String value){
+        public Builder addElement(String value) {
             elements.add(value);
             return this;
         }
 
-        public Builder addVegetable(String value){
+        public Builder addVegetable(String value) {
             vegetables.add(value);
             return this;
         }
@@ -80,8 +80,8 @@ public class TestCaseData {
             return this;
         }
 
-        public TestCaseData build(){
-            return new TestCaseData(summary,elements,colors,metals,vegetables);
+        public TestCaseData build() {
+            return new TestCaseData(summary, elements, colors, metals, vegetables);
         }
     }
 }
