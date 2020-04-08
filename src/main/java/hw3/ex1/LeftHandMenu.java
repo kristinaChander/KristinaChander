@@ -24,5 +24,4 @@ public class LeftHandMenu extends AbstractPageComposite {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
-
 }

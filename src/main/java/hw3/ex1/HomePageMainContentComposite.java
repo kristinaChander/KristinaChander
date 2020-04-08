@@ -46,8 +46,4 @@ public class HomePageMainContentComposite extends AbstractPageComposite {
     public WebElement getIframeButton(){
         return iFrameButton;
     }
-
-
 }
-
-

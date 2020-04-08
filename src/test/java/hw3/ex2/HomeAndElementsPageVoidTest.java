@@ -5,8 +5,9 @@ import hw3.ex1.HomePageVoid;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class HomeAndElementsPageVoidTest extends AbstractTestBase {
 
@@ -30,26 +31,24 @@ public class HomeAndElementsPageVoidTest extends AbstractTestBase {
         homePageVoid.clickOnTheDifferentElements();
 
         //Select checkboxes Water, Wind
-        elementsVoidPage.clickWaterCheckBox();
-        elementsVoidPage.clickWindCheckBox();
+        elementsVoidPage.clickCheckButtonsFromList("Water");
+        elementsVoidPage.clickCheckButtonsFromList("Wind");
 
         //Select radio selen
-        elementsVoidPage.clickSelenRadio();
+       elementsVoidPage.clickRadioButtonsFromList("Selen");
 
         //Select in dropdown Yellow
-        elementsVoidPage.clickColorsDropDown();
-        elementsVoidPage.clickYellow();
+        elementsVoidPage.chooseColorFromDropDown("Yellow");
 
         //for each checkbox there is an individual log row and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
         assertEquals(elementsVoidPage.getLogEntryCount(), 4);
 
-        assertTrue(elementsVoidPage.getFilteredLogsText().contains("Colors: value changed to Yellow"));
-        assertTrue(elementsVoidPage.getFilteredLogsText().contains("metal: value changed to Selen"));
-        assertTrue(elementsVoidPage.getFilteredLogsText().contains("Wind: condition changed to true"));
-        assertTrue(elementsVoidPage.getFilteredLogsText().contains("Water: condition changed to true"));
-
-
+        assertEquals(elementsVoidPage.getFilteredLogsText(),
+                Arrays.asList(
+                        "Colors: value changed to Yellow",  "metal: value changed to Selen",
+                        "Wind: condition changed to true", "Water: condition changed to true")
+        );
     }
 }

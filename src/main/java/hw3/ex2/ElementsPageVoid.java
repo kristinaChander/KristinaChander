@@ -6,45 +6,36 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static hw3.ex2.ElementSelectUtils.chooseFromList;
+
 public class ElementsPageVoid {
 
-    @FindBy(xpath = "//label[normalize-space()='Water']")
-    private WebElement checkBoxWater;
+    @FindBy(css = ".label-checkbox")
+    private List<WebElement> checkBoxList;
 
-    @FindBy(xpath = "//label[normalize-space()='Wind']")
-    private WebElement checkBoxWind;
+    @FindBy(css = ".label-radio")
+    private List<WebElement> radioButtonList;
 
-    @FindBy(xpath = "//label[normalize-space()='Selen']" )
-    private WebElement radioSelen;
-
-    @FindBy(css = "div.colors .uui-form-element")
+    @FindBy(css = "select[class='uui-form-element']")
     private WebElement colorsDropDown;
 
-    @FindBy(xpath = "//*[text()='Yellow']")
-    private WebElement yellow;
+    @FindBy(css = "option")
+    private List<WebElement> colorsList;
 
     @FindBy(css = ".logs>li")
     private List<WebElement> logList;
 
-
-    public void clickWaterCheckBox(){
-        checkBoxWater.click();
-    }
-
-    public void clickWindCheckBox(){
-        checkBoxWind.click();
-    }
-
-    public void clickSelenRadio(){
-        radioSelen.click();
-    }
-
-    public void clickColorsDropDown(){
+    public void chooseColorFromDropDown(String colorName) {
         colorsDropDown.click();
+        chooseFromList(colorName, colorsList);
     }
 
-    public void clickYellow(){
-        yellow.click();
+    public void clickCheckButtonsFromList(String checkBoxName){
+        chooseFromList(checkBoxName, checkBoxList);
+    }
+
+    public void clickRadioButtonsFromList(String radioButtonName){
+        chooseFromList(radioButtonName, radioButtonList);
     }
 
     public int getLogEntryCount(){
@@ -55,7 +46,5 @@ public class ElementsPageVoid {
         return logList.stream()
                 .map(s -> s.getText().substring(9))
                 .collect(Collectors.toList());
-
     }
-
 }
