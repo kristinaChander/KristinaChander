@@ -1,5 +1,7 @@
-package hw5;
+package hw5.ex1;
 
+import hw5.AbstractTestBase;
+import hw5.AllureScreenshotListener;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Listeners;
