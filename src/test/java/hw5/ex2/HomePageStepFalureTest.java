@@ -11,7 +11,7 @@ public class HomePageStepFalureTest extends AbstractTestBase {
     @Feature(value = "Home page elements")
     @Story(value = "Log in and page content test")
     @Test
-    public void logInAndFindTabsAndFrameTest() {
+    public void logInAndFindTabsAndFrameErrorTest() {
         homeSteps.open(credentialsHelper.getProperty("url"));
         homeSteps.pageTitleShouldBe("Home Page");
         homeSteps.logInAs(credentialsHelper.getProperty("login"), credentialsHelper.getProperty("password"));
