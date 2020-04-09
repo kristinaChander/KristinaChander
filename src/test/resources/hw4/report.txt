@@ -1,0 +1,54 @@
+Test logic layer 
+The following test scenarios have been implemented:
+1.Opening the main page
+2.Logging in
+3.Going to the table page 
+4.Checking the default entry number
+5.Changing the default entry number
+6.Checking Search function
+7.Going to the Metals & Colors page
+8.Filling form with test data
+9.Checking data in Results block
+
+
+Test logic implementation layer
+The following means were used to implement the test logic
+1.Programming language - java
+2.Design patterns - page composite, builder
+3.Browser management tool - Selenium Web Driver
+4.Assertion mechanism through TestNG
+
+
+Test data layer
+Data is stored in:
+1.Property file (login credentials)
+2.Data provider method
+
+
+Test running layer
+Tests are run using:
+1.Maven 
+2.TestNG
+3.Suite xml file
+
+
+Report ang log layer
+There is a report in the target/surefire-reports folder
++ information is provided by TestNG (comparison of expected and actual result) while running tests
+
+Service layer
+Is not presented
+
+Configuration layer
+1.Browser configuration (choice of browser and settings) is made through SetUp methods (SetupClass and SetupTest)
+
+Utils layer
+The following utils class are included into the project
+1. Select Utils - to help working with methods selecting a value
+2. Properties helper - to help working with login credentials
+
+Improvements
+Test logic implementation layer may include a class to store common variables.
+
+
+ 
