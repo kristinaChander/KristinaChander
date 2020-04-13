@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="All Selenium Tests suite">
+
+    <listeners>
+        <listener class-name="hw5.AllureScreenshotListener"/>
+    </listeners>
+    <test name="SeleniumTests">
+        <packages>
+            <package name="hw5.*"/>
+        </packages>
+    </test>
+</suite>
