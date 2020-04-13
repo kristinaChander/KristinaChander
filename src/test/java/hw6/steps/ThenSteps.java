@@ -72,7 +72,7 @@ public class ThenSteps {
     public void tableShouldContain(DataTable dataTable) {
         List<Map<String, String>> list = dataTable.asMaps();
         UserTablePage userTablePage = new UserTablePage(WebDriverSingleton.INSTANCE.getDriver());
-        assertEquals(userTablePage.getTableRows(), list);
+        assertEquals(userTablePage.getListOfMapsFromRows(), list);
     }
 
     @Then("droplist should contain values in column Type for user Roman")

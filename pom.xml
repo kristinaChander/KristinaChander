@@ -88,10 +88,6 @@
                 <version>${allure.version}</version>
             </dependency>
 
-
-
-
-
     </dependencies>
 
     <profiles>

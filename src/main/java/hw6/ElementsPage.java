@@ -50,7 +50,7 @@ public class ElementsPage extends AbstractPage {
 
     public List<String> getFilteredLogsText(){
         return logList.stream()
-                .map(s -> s.getText().substring(9))
+                .map(s -> getText(s).substring(9))
                 .collect(Collectors.toList());
     }
 

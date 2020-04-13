@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,47 +49,47 @@ public class UserTablePage extends AbstractPage {
     }
 
     public List <String> getLogsText(){
-        return logs.stream().map(s->s.getText().substring(9)).collect(Collectors.toList());
-
-
+        return logs.stream().map(s->getText(s).substring(9)).collect(Collectors.toList());
     }
+
     public int getLogEntryCount(){
         return logs.size();
     }
 
-    public List<Map<String,String>> getTableRows(){
-        WebElement headerRow = tableRows.get(0);
-        List<String> headerList = getList(headerRow, "th");
-        return tableRows.stream()
-                .skip(1)
-                .map(row -> toRowMap(row, headerList))
-                .collect(Collectors.toList());
+    public List<String> getListFromRow(WebElement row, String sel){
+        List<String> list = new ArrayList<>();
+        List<WebElement> elements = row.findElements(By.cssSelector(sel));
+        for (int i = 0; i <elements.size() ; i++) {
+            list.add(elements.get(i).getText());
+        }
+        return list;
     }
 
-    private Map<String, String> toRowMap(WebElement row, List<String> headerList) {
-        Map<String,String> map = new HashMap<>();
-        List<String> columns = getList(row, "td");
-        for (int i = 0; i < columns.size(); i++) {
-            String header = headerList.get(i);
-            String value = columns.get(i);
-            if(!"Type".equals(header)) {
-                if("Description".equals(header)){
-                    map.put(header, value.substring(0, value.length()-3).trim());
-                } else{
-                    map.put(header, value.trim());
-                }
+    public List<Map<String, String>> getListOfMapsFromRows(){
+        List<Map<String, String>> listOfMaps = new ArrayList<>();
+        List<String> headerRow = getListFromRow(tableRows.get(0), "th");
+        List<List<String>> row = new ArrayList<>();
+        for (int i = 1; i < tableRows.size(); i++) {
+            row.add(getListFromRow(tableRows.get(i),"td"));
+        }
+
+        for (int i = 1; i < tableRows.size(); i++) {
+            listOfMaps.add(new HashMap<>());
+        }
+        for (int i = 0; i < row.size(); i++) {
+            for (int j = 0; j <row.get(i).size() ; j++) {
+                listOfMaps.get(i).put(headerRow.get(j),row.get(i).get(j));
             }
         }
-        return map;
-    }
 
-    private List<String> getList(WebElement row, String selector){
-        return row.findElements(By.cssSelector(selector))
-                .stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
+        for (Map<String,String> map: listOfMaps) {
+            map.remove("Type");
+            String description = map.get("Description");
+            String newDescription = description.substring(0, description.length()-3).trim();
+            map.put("Description",newDescription);
+        }
+        return listOfMaps;
     }
-
 
 
     public  int getNumberTypeDropdownsCount() {
@@ -113,8 +114,4 @@ public class UserTablePage extends AbstractPage {
                 .map(s -> s.getText())
                 .collect(Collectors.toList());
     }
-
-
-
-
 }

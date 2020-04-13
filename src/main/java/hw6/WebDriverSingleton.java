@@ -9,12 +9,13 @@ public enum WebDriverSingleton {
 
     private WebDriver driver;
 
-
     public void createDriver(String browserName){
         if("Chrome".equalsIgnoreCase(browserName)){
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
         }
     }
+
     public WebDriver getDriver(){
         return driver;
     }

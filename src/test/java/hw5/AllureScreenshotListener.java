@@ -18,12 +18,6 @@ public class AllureScreenshotListener extends TestListenerAdapter {
         }
     }
 
-//    @Override
-//    public void onTestSuccess(ITestResult tr) {
-//        super.onTestSuccess(tr);
-//        takeScreenshot();
-//    }
-
     @Override
     public void onTestFailure(ITestResult tr) {
         super.onTestFailure(tr);
