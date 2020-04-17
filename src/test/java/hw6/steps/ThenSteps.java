@@ -1,10 +1,7 @@
 package hw6.steps;
 
-import hw6.ElementsPage;
-import hw6.HomePage;
-import hw6.UserTablePage;
-import hw6.WebDriverSingleton;
-import io.cucumber.datatable.DataTable;
+import hw6.*;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 
 import java.util.Arrays;
@@ -68,24 +65,36 @@ public class ThenSteps {
         assertEquals(userTablePage.getCheckBoxCount(), expectedNumber);
     }
 
+
+    @DataTableType
+    public UserTableRow userEntry(Map<String, String> entry) {
+        return new UserTableRow(
+                entry.get("Number"),
+                entry.get("User"),
+                entry.get("Description"));
+    }
+
     @Then("User table should contain following values:")
-    public void tableShouldContain(DataTable dataTable) {
-        List<Map<String, String>> list = dataTable.asMaps();
+    public void tableShouldContain(List<UserTableRow> userTableRows) {
         UserTablePage userTablePage = new UserTablePage(WebDriverSingleton.INSTANCE.getDriver());
-        assertEquals(userTablePage.getListOfMapsFromRows(), list);
+        assertEquals(userTablePage.userTableRowList(), userTableRows);
+    }
+
+    @DataTableType
+    public DropDownRow userType(Map<String, String> entry) {
+        return new DropDownRow(entry.get("Dropdown Values"));
     }
 
     @Then("droplist should contain values in column Type for user Roman")
-    public void droplistValuesShoulBe(DataTable dataTable) {
-        List<String> list = dataTable.asList().subList(1,dataTable.asList().size());
+    public void droplistValuesShoulBe(List<DropDownRow> dropDownRows) {
         UserTablePage userTablePage = new UserTablePage(WebDriverSingleton.INSTANCE.getDriver());
-        assertEquals(userTablePage.getDropDownValues(), list);
+        assertEquals(userTablePage.getDropDownValues(), dropDownRows);
     }
 
     @Then("{int} log row has {string} text in log section")
-    public void oneLogVipGotTrue(int number, String text){
+    public void oneLogVipGotTrue(int number, String text) {
         UserTablePage userTablePage = new UserTablePage(WebDriverSingleton.INSTANCE.getDriver());
-        assertEquals(userTablePage.getLogEntryCount(),number);
-        assertEquals(userTablePage.getLogsText().get(0),text);
+        assertEquals(userTablePage.getLogEntryCount(), number);
+        assertEquals(userTablePage.getLogsText().get(0), text);
     }
 }

@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UserTablePage extends AbstractPage {
@@ -65,32 +63,24 @@ public class UserTablePage extends AbstractPage {
         return list;
     }
 
-    public List<Map<String, String>> getListOfMapsFromRows(){
-        List<Map<String, String>> listOfMaps = new ArrayList<>();
+    public List<UserTableRow> userTableRowList(){
         List<String> headerRow = getListFromRow(tableRows.get(0), "th");
-        List<List<String>> row = new ArrayList<>();
+        int numberPosition = headerRow.indexOf("Number");
+        int userPosition = headerRow.indexOf("User");
+        int descriptionPosition = headerRow.indexOf("Description");
+
+        List<UserTableRow> list = new ArrayList<>();
         for (int i = 1; i < tableRows.size(); i++) {
-            row.add(getListFromRow(tableRows.get(i),"td"));
+            WebElement row = tableRows.get(i);
+            List<String> listFromRow = getListFromRow(row, "td");
+            String number = listFromRow.get(numberPosition);
+            String user = listFromRow.get(userPosition);
+            String description = listFromRow.get(descriptionPosition);
+            list.add(new UserTableRow(number, user, description.substring(0, description.length()-3).trim()));
         }
 
-        for (int i = 1; i < tableRows.size(); i++) {
-            listOfMaps.add(new HashMap<>());
-        }
-        for (int i = 0; i < row.size(); i++) {
-            for (int j = 0; j <row.get(i).size() ; j++) {
-                listOfMaps.get(i).put(headerRow.get(j),row.get(i).get(j));
-            }
-        }
-
-        for (Map<String,String> map: listOfMaps) {
-            map.remove("Type");
-            String description = map.get("Description");
-            String newDescription = description.substring(0, description.length()-3).trim();
-            map.put("Description",newDescription);
-        }
-        return listOfMaps;
+        return list;
     }
-
 
     public  int getNumberTypeDropdownsCount() {
         return numberTypeDropdowns.size();
@@ -108,10 +98,10 @@ public class UserTablePage extends AbstractPage {
         return checkboxes.size();
     }
 
-    public List<String> getDropDownValues(){
+    public List<DropDownRow> getDropDownValues(){
         dropDownBtn.click();
         return dropDownValues.stream()
-                .map(s -> s.getText())
+                .map(s -> new DropDownRow(s.getText()))
                 .collect(Collectors.toList());
     }
 }
