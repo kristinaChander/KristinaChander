@@ -13,20 +13,37 @@
         <java.target.version>1.8</java.target.version>
         <testng.version>6.10</testng.version>
         <selenium.version>3.141.59</selenium.version>
-        <webdrivermanager.version>3.8.1</webdrivermanager.version>
         <project.build.sourseEncoding>UTF-8</project.build.sourseEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>2.13.2</allure.version>
         <cucumber.version>5.6.0</cucumber.version>
+        <jdi.version>1.2.0</jdi.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <allure-maven-plugin.version>2.10.0</allure-maven-plugin.version>
 
+        <domain>https://jdi-testing.github.io/jdi-light/</domain>
+        <driver>chrome</driver>
     </properties>
 
     <dependencies>
+
+        <!--<dependency>-->
+            <!--<groupId>io.github.bonigarcia</groupId>-->
+            <!--<artifactId>webdrivermanager</artifactId>-->
+            <!--<version>3.8.1</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <dependency>
             <groupId>com.epam.tat.module4</groupId>
             <artifactId>calculator</artifactId>
@@ -48,12 +65,6 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -82,11 +93,29 @@
             <scope>test</scope>
         </dependency>
 
-            <dependency>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-cucumber5-jvm</artifactId>
-                <version>${allure.version}</version>
-            </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber5-jvm</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>${jdi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>22.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.9</version>
+        </dependency>
 
     </dependencies>
 
@@ -184,12 +213,25 @@
         <profile>
             <id>HW6AllTests</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw6/HW6AllTests.xml</suite.xml>
             </properties>
+            <dependencies>
+            </dependencies>
         </profile>
+
+        <profile>
+            <id>HW7AllTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/hw7/HW7AllTests.xml</suite.xml>
+            </properties>
+        </profile>
+
 
     </profiles>
 
@@ -237,6 +279,15 @@
             </plugin>
 
         </plugins>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>
