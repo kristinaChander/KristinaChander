@@ -13,7 +13,7 @@ public class MetalsAndColorsPage extends AbstractPage {
     private VegetablesComposite vegetablesComposite;
     private ResultsComposite resultsComposite;
 
-    @FindBy(id = "submit-button")
+    @FindBy(id = "fillFormWithValues-button")
     private WebElement submitBtn;
 
     public ResultsComposite getResultsComposite() {

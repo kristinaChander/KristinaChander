@@ -15,12 +15,9 @@ import static org.testng.Assert.assertTrue;
 
 public class FirstTest {
     
-    private JdiSite jdiSite;
-
     @BeforeSuite(alwaysRun = true)
     void setUp() {
-        jdiSite = new JdiSite();
-        initElements(jdiSite);
+        initElements(JdiSite.class);
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -46,20 +43,20 @@ public class FirstTest {
 
     @Test(dataProvider = "testData")
     public void logInTest(Data data, ExpectedData expectedData){
-        jdiSite.open();
-        jdiSite.jdiHomePage.login(ROMAN);
+        JdiSite.open();
+        JdiSite.jdiHomePage.login(ROMAN);
 
-        Assert.assertEquals(jdiSite.jdiHomePage.getUserName(),ROMAN.getFullName());
+        Assert.assertEquals(JdiSite.jdiHomePage.getUserName(),ROMAN.getFullName());
 
-        jdiSite.jdiHomePage.goToMetalsAndColorsFromHome();
-        jdiSite.jdiElementsPage.selectElements(data);
-        jdiSite.jdiElementsPage.clickSubmit();
+        JdiSite.jdiHomePage.goToMetalsAndColorsFromHome();
+        JdiSite.jdiElementsPage.selectElements(data);
+        JdiSite.jdiElementsPage.clickSubmit();
 
-        assertTrue(jdiSite.jdiElementsPage.getSummmaryResult().getValue().contains(expectedData.getExpectedSummary()));
-        assertTrue(jdiSite.jdiElementsPage.getMetalsResult().getValue().contains(expectedData.getExpectedMetals()));
-        assertTrue(jdiSite.jdiElementsPage.getElemResult().getValue().contains(expectedData.getExpectedElements()));
-        assertTrue(jdiSite.jdiElementsPage.getColorsResult().getValue().contains(expectedData.getExpectedColor()));
-        assertTrue(jdiSite.jdiElementsPage.getVegetablesResult().getValue().contains(expectedData.getExpectedVegetables()));
+        assertTrue(JdiSite.jdiElementsPage.getSummmaryResult().getValue().contains(expectedData.getExpectedSummary()));
+        assertTrue(JdiSite.jdiElementsPage.getMetalsResult().getValue().contains(expectedData.getExpectedMetals()));
+        assertTrue(JdiSite.jdiElementsPage.getElemResult().getValue().contains(expectedData.getExpectedElements()));
+        assertTrue(JdiSite.jdiElementsPage.getColorsResult().getValue().contains(expectedData.getExpectedColor()));
+        assertTrue(JdiSite.jdiElementsPage.getVegetablesResult().getValue().contains(expectedData.getExpectedVegetables()));
     }
 
 }

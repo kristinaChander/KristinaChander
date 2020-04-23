@@ -18,7 +18,7 @@ public class JdiElementsPage extends WebPage {
     @Css(".logs>li")
     private List<WebElement> logList;
 
-    @Css("#submit-button")
+    @Css("#fillFormWithValues-button")
     private Button submitBtn;
 
     @Css(".summ-res")

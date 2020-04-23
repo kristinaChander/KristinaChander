@@ -10,12 +10,12 @@ import hw7.ui_object_pages.JdiHomePage;
 public class JdiSite {
 
     @Url("/index.html") @Title("Home Page")
-    public JdiHomePage jdiHomePage;
+    public static JdiHomePage jdiHomePage;
 
     @Url("/metals-colors.html") @Title("Metal and Colors")
-    public JdiElementsPage jdiElementsPage;
+    public static JdiElementsPage jdiElementsPage;
 
-    public void open(){
+    public static void open(){
         jdiHomePage.open();
     }
 }

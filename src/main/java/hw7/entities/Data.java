@@ -64,5 +64,4 @@ public class Data {
             .metals("Selen")
             .vegetables(Arrays.asList("Cucumber","Tomato", "Vegetables","Onion"))
             .build();
-
 }

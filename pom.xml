@@ -11,14 +11,14 @@
     <properties>
         <java.source.version>1.8</java.source.version>
         <java.target.version>1.8</java.target.version>
-        <testng.version>6.10</testng.version>
+        <testng.version>7.1.0</testng.version>
         <selenium.version>3.141.59</selenium.version>
         <project.build.sourseEncoding>UTF-8</project.build.sourseEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>2.13.2</allure.version>
         <cucumber.version>5.6.0</cucumber.version>
-        <jdi.version>1.2.0</jdi.version>
+        <jdi.version>1.2.3</jdi.version>
 
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -246,7 +246,7 @@
                         <suiteXmlFile>${suite.xml}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                 </configuration>
                 <dependencies>
