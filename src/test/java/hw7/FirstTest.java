@@ -1,20 +1,23 @@
 package hw7;
 
 import com.epam.jdi.light.driver.WebDriverFactory;
-import hw7.entities.Data;
-import hw7.entities.ExpectedData;
-import org.testng.Assert;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hw7.entities.MetalsAndColorsFormData;
 import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.epam.jdi.light.driver.WebDriverUtils.killAllSeleniumDrivers;
 import static com.epam.jdi.light.elements.init.PageFactory.initElements;
-import static hw7.entities.Data.*;
-import static hw7.entities.ExpectedData.*;
 import static hw7.entities.User.ROMAN;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class FirstTest {
-    
+
     @BeforeSuite(alwaysRun = true)
     void setUp() {
         initElements(JdiSite.class);
@@ -31,32 +34,31 @@ public class FirstTest {
     }
 
     @DataProvider
-    public Object[][] testData() {
-        return new Object[][]{
-                {DATA_1, EXPECTED_DATA_1},
-                {DATA_2, EXPECTED_DATA_2},
-                {DATA_3, EXPECTED_DATA_3},
-                {DATA_4, EXPECTED_DATA_4},
-                {DATA_5, EXPECTED_DATA_5}
-        };
+    public Object[][] testData() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        InputStream is = getClass().getClassLoader().getResourceAsStream("hw7/metalsColorsDataSet.json");
+        Map<String, MetalsAndColorsFormData> formData = objectMapper.readValue(is,
+                new TypeReference<LinkedHashMap<String, MetalsAndColorsFormData>>() {});
+        Object[][] testData = new Object[formData.size()][1];
+        int i = 0;
+        for (MetalsAndColorsFormData value : formData.values()) {
+            testData[i][0] = value;
+            i++;
+        }
+        return testData;
     }
 
     @Test(dataProvider = "testData")
-    public void logInTest(Data data, ExpectedData expectedData){
+    public void logInTest(MetalsAndColorsFormData data) {
         JdiSite.open();
         JdiSite.jdiHomePage.login(ROMAN);
 
-        Assert.assertEquals(JdiSite.jdiHomePage.getUserName(),ROMAN.getFullName());
+        JdiSite.jdiHomePage.getLoggedInUsername().assertThat().text(ROMAN.getFullName());
 
         JdiSite.jdiHomePage.goToMetalsAndColorsFromHome();
-        JdiSite.jdiElementsPage.selectElements(data);
-        JdiSite.jdiElementsPage.clickSubmit();
+        JdiSite.jdiElementsPage.submitForm(data);
 
-        assertTrue(JdiSite.jdiElementsPage.getSummmaryResult().getValue().contains(expectedData.getExpectedSummary()));
-        assertTrue(JdiSite.jdiElementsPage.getMetalsResult().getValue().contains(expectedData.getExpectedMetals()));
-        assertTrue(JdiSite.jdiElementsPage.getElemResult().getValue().contains(expectedData.getExpectedElements()));
-        assertTrue(JdiSite.jdiElementsPage.getColorsResult().getValue().contains(expectedData.getExpectedColor()));
-        assertTrue(JdiSite.jdiElementsPage.getVegetablesResult().getValue().contains(expectedData.getExpectedVegetables()));
+        assertEquals(JdiSite.jdiElementsPage.getResults(), data.getExpectedResult());
     }
 
 }

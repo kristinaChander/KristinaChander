@@ -23,8 +23,8 @@ public class JdiHomePage extends WebPage {
 
     private JdiLoginForm jdiLoginForm;
 
-    public String getUserName(){
-        return loggedInUsername.getValue();
+    public Text getLoggedInUsername() {
+        return loggedInUsername;
     }
 
     public void login(User user){

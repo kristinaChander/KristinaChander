@@ -6,7 +6,7 @@ import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.TextField;
 import hw7.entities.User;
 
-public class JdiLoginForm extends Form <User> {
+public class JdiLoginForm extends Form<User> {
 
     @Css("#name")
     private TextField name;
