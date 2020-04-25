@@ -14,7 +14,7 @@ public class JdiElementsPage extends WebPage {
 
     private JdiElementsForm jdiElementsForm;
 
-    @Css("#fillFormWithValues-button")
+    @Css("#submit-button")
     private Button submitBtn;
 
     @Css(".results li")
