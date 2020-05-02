@@ -123,6 +123,18 @@
             <version>2.10.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.15.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.2.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -232,10 +244,19 @@
         <profile>
             <id>HW7AllTests</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml>src/test/resources/hw7/HW7AllTests.xml</suite.xml>
+            </properties>
+        </profile>
+        <profile>
+            <id>RestAssuredAllTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/rest_assured/restAssured.xml</suite.xml>
             </properties>
         </profile>
 
