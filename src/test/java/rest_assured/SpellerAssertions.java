@@ -20,9 +20,17 @@ public class SpellerAssertions {
         return this;
     }
 
-    public SpellerAssertions verifyBodyHasCorrectWord(String incorrectWord, String correctWord, Integer errorCode) {
-        assertThat(spellerResponse[0]).extracting("word", "s[0]", "code")
-                .containsExactly(incorrectWord, correctWord, errorCode);
+    public SpellerAssertions verifyBodyHasErrorCode(Integer errorCode) {
+        assertThat(spellerResponse[0]).extracting( "code").isSameAs(errorCode);
+        return this;
+    }
+    public SpellerAssertions verifyBodyHasIncorrectWord(String incorrectWord) {
+        assertThat(spellerResponse[0]).extracting("word").isEqualTo(incorrectWord);
+        return this;
+    }
+
+    public SpellerAssertions verifyBodyHasCorrectedWord(String correctWord) {
+        assertThat(spellerResponse[0]).extracting( "s").isEqualToComparingOnlyGivenFields(correctWord);
         return this;
     }
 }

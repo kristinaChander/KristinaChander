@@ -1,4 +1,4 @@
-package rest_assured.low_level;
+package rest_assured;
 
 import lombok.SneakyThrows;
 

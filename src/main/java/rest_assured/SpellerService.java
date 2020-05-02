@@ -11,8 +11,8 @@ public class SpellerService {
 
     private final CommonService commonService = new CommonService();
 
-    public SpellerDto[] getSpellingOneWordCheckResult(String text) {
-        return getSpellingOneWordCheckResult(text,null,null);
+    public SpellerDto[] getSpellingOneWordCheckResult(String text,Integer option) {
+        return getSpellingOneWordCheckResult(text,null,option);
     }
 
     public SpellerDto[] getSpellingOneWordCheckResult(String text, String lang) {
