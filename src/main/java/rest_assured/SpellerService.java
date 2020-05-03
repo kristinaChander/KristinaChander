@@ -1,5 +1,6 @@
 package rest_assured;
 
+import com.google.gson.Gson;
 import io.restassured.response.ResponseBody;
 
 import java.util.HashMap;
@@ -27,13 +28,6 @@ public class SpellerService {
         return getTextsSpellerResult(text, lang, null);
     }
 
-    public SpellerDto[][] getSpellingSentenceCheckResult(String text) {
-        return getTextsSpellerResult(text, null, null);
-    }
-
-    public SpellerDto[][] getSpellingSentenceCheckResult(String text, Integer options) {
-        return getTextsSpellerResult(text, null, options);
-    }
     public SpellerDto[][] getSpellingSentenceCheckResult(String text, String lang, Integer options) {
         return getTextsSpellerResult(text, lang, options);
     }
@@ -41,13 +35,15 @@ public class SpellerService {
     private SpellerDto[] getTextSpellerResult(String text, String lang, Integer options) {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXT_ENDPOINT, params).getBody();
-        return body.as(SpellerDto[].class);
+        return new Gson().fromJson(body.asString(),SpellerDto[].class);
+        //return body.as(SpellerDto[].class);
     }
 
     private SpellerDto[][] getTextsSpellerResult(String text, String lang, Integer options) {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXTS_ENDPOINT, params).getBody();
-        return body.as(SpellerDto[][].class);
+        return new Gson().fromJson(body.asString(), SpellerDto[][].class);
+//        return body.as(SpellerDto[][].class);
     }
 
     private HashMap<String, Object> getParams(String text, String lang, Integer options) {

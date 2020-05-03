@@ -1,28 +1,29 @@
 package rest_assured;
 
 public class Constants {
-    public static final String ONE_ENGLISH_WORD_WRONG_SPELLING = "helo";
-    public static final String  ONE_RUSSIAN_WORD_WRONG_SPELLING = "прювет";
-    public static final String  ONE_UKRANIAN_WORD_WRONG_SPELLING = "прривіт";
+    public static final String ONE_ENGLISH_WORD_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("oneEnglishWordWrongSpelling");
+    public static final String ONE_RUSSIAN_WORD_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("oneRussianWordWrongSpelling");
+    public static final String ONE_UKRAINIAN_WORD_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("oneUkrainianWordWrongSpelling");
 
-    public static final String ONE_ENGLISH_WORD_CORRECT_SPELLING = "hello";
-    public static final String ONE_RUSSIAN_WORD_CORRECT_SPELLING = "привет";
-    public static final String ONE_UKRANIAN_WORD_CORRECT_SPELLING = "привіт";
+    public static final String ONE_ENGLISH_WORD_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("oneEnglishWordCorrectSpelling");
+    public static final String ONE_RUSSIAN_WORD_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("oneRussianWordCorrectSpelling");
+    public static final String ONE_UKRAINIAN_WORD_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("oneUkrainianWordCorrectSpelling");
 
+    public static final String SENTENCE_ENGLISH_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceEnglishWrongSpelling");
+    public static final String SENTENCE_RUSSIAN_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceRussianWrongSpelling");
+    public static final String SENTENCE_UKRAINIAN_WRONG_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceUkrainianWrongSpelling");
 
+    public static final String SENTENCE_ENGLISH_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceEnglishCorrectSpelling");
+    public static final String SENTENCE_RUSSIAN_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceRussianCorrectSpelling");
+    public static final String SENTENCE_UKRAINIAN_CORRECT_SPELLING = GetPropertyUtil.getProperties().getProperty("sentenceUkrainianCorrectSpelling");
 
-    public static final String SENTENCE_ENGLISH_WRONG_SPELLING = "catt is naice";
-    public static final String SENTENCE_RUSSIAN_WRONG_SPELLING = "Кажддый человввек илмеет прао на обршзование";
-    public static final String SENTENCE_UKRANIAN_WRONG_SPELLING = "Кожа лдина ioмає прppво на оoсвіту";
+    public static final String ENGLISH_WORD_WITH_CAPS = GetPropertyUtil.getProperties().getProperty("englishWordWithCaps");
+    public static final String RUSSIAN_WORD_WITH_CAPS = GetPropertyUtil.getProperties().getProperty("russianWordWithCaps");
+    public static final String UKRAINIAN_WORD_WITH_CAPS = GetPropertyUtil.getProperties().getProperty("ukrainianWordWithCaps");
 
-    public static final String SENTENCE_ENGLISH_CORRECT_SPELLING = "Cat is nice";
-    public static final String SENTENCE_RUSSIAN_CORRECT_SPELLING = "Каждый человек имеет право на образование";
-    public static final String SENTENCE_UKRANIAN_CORRECT_SPELLING = "Кожна людина має право на освіту";
-
-
-    public static final String ENGLISH_WORD_WITH_CAPS = "hELLO";
-    public static final String RUSSIAN_WORD_WITH_CAPS = "пРИВет";
-    public static final String UKRANIAN_WORD_WITH_CAPS = "пРИВіт";
+    public static final String SENTENCE_ENGLISH_DUPLICATION = GetPropertyUtil.getProperties().getProperty("sentenceEnglishDuplication");
+    public static final String SENTENCE_RUSSIAN_DUPLICATION = GetPropertyUtil.getProperties().getProperty("sentenceRussianDuplication");
+    public static final String SENTENCE_UKRAINIAN_DUPLICATION = GetPropertyUtil.getProperties().getProperty("sentenceUkrainianDuplication");
 
     public static final String WORD_WITH_DIGITS = "7688799$";
     public static final String WORD_WITH_DIGITS2 = "21-09-1978";
@@ -30,11 +31,7 @@ public class Constants {
 
     public static final String ENGLISH_LANG = GetPropertyUtil.getProperties().getProperty("englishLang");
     public static final String RUSSIAN_LANG = GetPropertyUtil.getProperties().getProperty("russianLang");
-    public static final String UKRANIAN_LANG = GetPropertyUtil.getProperties().getProperty("ukranianLang");
-
-    public static final String SENTENCE_ENGLISH_DUPLICATION = "hello hello how how how are you";
-    public static final String SENTENCE_RUSSIAN_DUPLICATION = "привет привет привет";
-    public static final String SENTENCE_UKRANIAN_DUPLICATION = "привіт привіт привіт привіт";
+    public static final String UKRAINIAN_LANG = GetPropertyUtil.getProperties().getProperty("UKRAINIANLang");
 
     public static final Integer OPTION_IGNORE_CAPITALIZATION = Integer.parseInt(GetPropertyUtil.getProperties().getProperty("optionIgnoreCapitalization"));
     public static final Integer OPTION_IGNORE_DIGITS = Integer.parseInt(GetPropertyUtil.getProperties().getProperty("optionIgnoreDigits"));
@@ -43,8 +40,4 @@ public class Constants {
     public static final Integer ERROR_CODE_CAPS = Integer.parseInt(GetPropertyUtil.getProperties().getProperty("errorCodeCaps"));
     public static final Integer ERROR_CODE_WORD_DUPLICATION = Integer.parseInt(GetPropertyUtil.getProperties().getProperty("errorCodeWordDuplication"));
     public static final Integer ERROR_CODE_NOT_IN_THE_DICTIONARY = Integer.parseInt(GetPropertyUtil.getProperties().getProperty("errorCodeNotInTheDictionary"));
-
-
-
-
 }

@@ -1,7 +1,5 @@
 package rest_assured;
 
-import com.sun.org.apache.bcel.internal.generic.GETFIELD;
-
 public class URI {
 
     public static final String DOMAIN = GetPropertyUtil.getProperties().getProperty("domain") ;

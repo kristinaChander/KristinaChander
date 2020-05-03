@@ -14,7 +14,7 @@ public class IgnoreCapitalization extends SetUpFunctionalLevel {
         return new Object[][]{
                 {ENGLISH_WORD_WITH_CAPS, ENGLISH_LANG},
                 {RUSSIAN_WORD_WITH_CAPS, RUSSIAN_LANG},
-                {UKRANIAN_WORD_WITH_CAPS, UKRANIAN_LANG},
+                {UKRAINIAN_WORD_WITH_CAPS, UKRAINIAN_LANG},
         };
     }
 

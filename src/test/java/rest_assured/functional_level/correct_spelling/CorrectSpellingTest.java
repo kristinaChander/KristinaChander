@@ -14,7 +14,7 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
         return new Object[][]{
                 {ONE_ENGLISH_WORD_CORRECT_SPELLING, ENGLISH_LANG},
                 {ONE_RUSSIAN_WORD_CORRECT_SPELLING, RUSSIAN_LANG},
-                {ONE_UKRANIAN_WORD_CORRECT_SPELLING, UKRANIAN_LANG},
+                {ONE_UKRAINIAN_WORD_CORRECT_SPELLING, UKRAINIAN_LANG},
         };
     }
 
@@ -31,7 +31,7 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
         return new Object[][]{
                 {SENTENCE_ENGLISH_CORRECT_SPELLING, ENGLISH_LANG},
                 {SENTENCE_RUSSIAN_CORRECT_SPELLING, RUSSIAN_LANG},
-                {SENTENCE_UKRANIAN_CORRECT_SPELLING, UKRANIAN_LANG},
+                {SENTENCE_UKRAINIAN_CORRECT_SPELLING, UKRAINIAN_LANG},
         };
     }
 
