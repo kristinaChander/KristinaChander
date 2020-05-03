@@ -13,14 +13,12 @@ import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 public class CapitalizationTest extends LowLevelSetUp {
     @Test(description = "One word with caps")
     public void capsOneWordTest() {
-        String lang = ENGLISH_LANG;
-        Integer errorCode = ERROR_CODE_CAPS;
         given(REQUEST_SPECIFICATION)
                 .param("text", ENGLISH_WORD_WITH_CAPS)
-                .param("lang", lang)
+                .param("lang", ENGLISH_LANG)
                 .get(CHECK_TEXT_ENDPOINT)
                 .then().statusCode(HttpStatus.SC_OK).and()
-                .body("[0].code", is(errorCode))
+                .body("[0].code", is(ERROR_CODE_CAPS))
                 .body(notNullValue());
     }
 }

@@ -17,8 +17,6 @@ public class LowLevelSetUp {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         REQUEST_SPECIFICATION = new RequestSpecBuilder()
                 .setBaseUri(DOMAIN)
-                .addFilter(new ResponseLoggingFilter())
-                .addFilter(new ResponseLoggingFilter())
                 .build();
     }
 }

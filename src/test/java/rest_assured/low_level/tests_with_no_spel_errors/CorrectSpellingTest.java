@@ -13,10 +13,9 @@ import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 public class CorrectSpellingTest extends LowLevelSetUp {
     @Test(description = "one correctly spelled word")
     public void emptyBodyIfCorrectSpellingWord() {
-        String lang = ENGLISH_LANG;
         given(REQUEST_SPECIFICATION)
                 .param("text", ONE_ENGLISH_WORD_CORRECT_SPELLING)
-                .param("lang", lang)
+                .param("lang", ENGLISH_LANG)
                 .get(CHECK_TEXT_ENDPOINT)
                 .then()
                 .statusCode(HttpStatus.SC_OK).and()

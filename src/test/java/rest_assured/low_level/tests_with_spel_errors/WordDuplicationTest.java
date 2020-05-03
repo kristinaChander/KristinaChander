@@ -14,16 +14,13 @@ public class WordDuplicationTest extends LowLevelSetUp {
 
     @Test(description = "Word duplication in a sentence")
     public void wordDuplicationInTextTest() {
-        String lang = ENGLISH_LANG;
-        Integer errorCode = ERROR_CODE_WORD_DUPLICATION;
-        Integer options = OPTION_FIND_DUPLICATION;
         given(REQUEST_SPECIFICATION)
                 .param("text", SENTENCE_ENGLISH_DUPLICATION)
-                .param("lang", lang)
-                .param("options", options)
+                .param("lang", ENGLISH_LANG)
+                .param("options", OPTION_FIND_DUPLICATION)
                 .get(CHECK_TEXTS_ENDPOINT)
                 .then().statusCode(HttpStatus.SC_OK).and()
-                .body("[0].code", hasItem(errorCode))
+                .body("[0].code", hasItem(ERROR_CODE_WORD_DUPLICATION))
                 .body(notNullValue());
     }
 }
