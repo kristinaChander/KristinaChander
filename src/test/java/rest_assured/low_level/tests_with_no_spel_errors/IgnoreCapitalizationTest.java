@@ -6,9 +6,7 @@ import rest_assured.low_level.LowLevelSetUp;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static rest_assured.Constants.ENGLISH_LANG;
-import static rest_assured.Constants.OPTION_IGNORE_CAPITALIZATION;
-import static rest_assured.Constants.ENGLISH_WORD_WITH_CAPS;
+import static rest_assured.Constants.*;
 import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 
 public class IgnoreCapitalizationTest extends LowLevelSetUp {
