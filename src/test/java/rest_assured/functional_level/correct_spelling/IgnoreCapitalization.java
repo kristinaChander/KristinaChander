@@ -2,9 +2,9 @@ package rest_assured.functional_level.correct_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.Services.SpellerAssertions;
-import rest_assured.SpellerDto;
-import rest_assured.SpellerParamDto;
+import rest_assured.services.SpellerAssertions;
+import rest_assured.dTO.SpellerDto;
+import rest_assured.dTO.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
 
 import static rest_assured.SpellerServiceDescription.*;

@@ -1,4 +1,4 @@
-package rest_assured;
+package rest_assured.dTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
