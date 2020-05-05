@@ -1,9 +1,9 @@
-package rest_assured;
+package rest_assured.Services;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions;
+import rest_assured.SpellerDto;
 
 public class SpellerAssertions {
-
     private SpellerDto[] spellerResponse;
 
     public SpellerAssertions(SpellerDto[] spellerResponse) {
@@ -11,26 +11,26 @@ public class SpellerAssertions {
     }
 
     public SpellerAssertions verifyEmptyBody() {
-        assertThat(spellerResponse).isEmpty();
+        Assertions.assertThat(spellerResponse).isEmpty();
         return this;
     }
 
     public SpellerAssertions verifyNotEmptyBody() {
-        assertThat(spellerResponse).isNotEmpty();
+        Assertions.assertThat(spellerResponse).isNotEmpty();
         return this;
     }
 
     public SpellerAssertions verifyBodyHasErrorCode(Integer errorCode) {
-        assertThat(spellerResponse[0]).extracting( "code").isSameAs(errorCode);
+        Assertions.assertThat(spellerResponse[0]).extracting( "code").isSameAs(errorCode);
         return this;
     }
     public SpellerAssertions verifyBodyHasIncorrectWord(String incorrectWord) {
-        assertThat(spellerResponse[0]).extracting("word").isEqualTo(incorrectWord);
+        Assertions.assertThat(spellerResponse[0]).extracting("word").isEqualTo(incorrectWord);
         return this;
     }
 
     public SpellerAssertions verifyBodyHasCorrectedWord(String correctWord) {
-        assertThat(spellerResponse[0]).extracting( "s").isEqualToComparingOnlyGivenFields(correctWord);
+        Assertions.assertThat(spellerResponse[0]).extracting( "s").isEqualToComparingOnlyGivenFields(correctWord);
         return this;
     }
 }

@@ -2,10 +2,9 @@ package rest_assured.functional_level.incorrect_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.SpellerAssertions;
+import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-
 import static rest_assured.Constants.*;
 
 public class WordDuplicationTest extends SetUpFunctionalLevel {
@@ -19,11 +18,10 @@ public class WordDuplicationTest extends SetUpFunctionalLevel {
     }
 
     @Test(description = "check sentence with word duplications", dataProvider = "duplSentenceCodeLang")
-    void CapsSpelledTest(String duplSentence, Integer errorCode, String lang) {
+    void capsSpelledTest(String duplSentence, Integer errorCode, String lang) {
         SpellerDto[][] textDescription = spellerService.getSpellingSentenceCheckResult(duplSentence, lang, OPTION_FIND_DUPLICATION);
 
-        SpellerAssertions spellerAssertions = new SpellerAssertions(textDescription[0]);
-        spellerAssertions
+        new SpellerAssertions(textDescription[0])
                 .verifyNotEmptyBody()
                 .verifyBodyHasErrorCode(errorCode);
     }

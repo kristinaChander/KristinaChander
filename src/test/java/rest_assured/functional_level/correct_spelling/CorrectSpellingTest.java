@@ -2,10 +2,9 @@ package rest_assured.functional_level.correct_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.SpellerAssertions;
+import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-
 import static rest_assured.Constants.*;
 
 public class CorrectSpellingTest extends SetUpFunctionalLevel {
@@ -22,8 +21,9 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
     void oneCorrectWordTest(String word, String lang) {
         SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(word, lang);
 
-        SpellerAssertions spellerAssertions = new SpellerAssertions(textDescription);
-        spellerAssertions.verifyEmptyBody();
+        new SpellerAssertions(textDescription)
+                .verifyEmptyBody();
+
     }
 
     @DataProvider
@@ -39,7 +39,8 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
     void correctSentenceTest(String sentence, String lang) {
         SpellerDto[][] textDescription = spellerService.getSpellingSentenceCheckResult(sentence, lang);
 
-        SpellerAssertions spellerAssertions = new SpellerAssertions(textDescription[0]);
-        spellerAssertions.verifyEmptyBody();
+        new SpellerAssertions(textDescription[0])
+                .verifyEmptyBody();
+
     }
 }

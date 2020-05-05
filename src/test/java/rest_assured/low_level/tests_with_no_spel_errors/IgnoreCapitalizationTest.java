@@ -3,7 +3,6 @@ package rest_assured.low_level.tests_with_no_spel_errors;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import rest_assured.low_level.LowLevelSetUp;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static rest_assured.Constants.*;
@@ -22,6 +21,5 @@ public class IgnoreCapitalizationTest extends LowLevelSetUp {
                 .then()
                 .statusCode(HttpStatus.SC_OK).and()
                 .body(is("[]"));
-
     }
 }

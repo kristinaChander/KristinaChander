@@ -2,10 +2,9 @@ package rest_assured.functional_level.correct_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.SpellerAssertions;
+import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-
 import static rest_assured.Constants.*;
 
 public class IgnoreCapitalization extends SetUpFunctionalLevel {
@@ -19,11 +18,10 @@ public class IgnoreCapitalization extends SetUpFunctionalLevel {
     }
 
     @Test(description = "check word with caps", dataProvider = "capsCorrectCodeLang")
-    void CapsSpelledTest(String wrongWord, String lang) {
+    void capsSpelledTest(String wrongWord, String lang) {
         SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(wrongWord, lang, OPTION_IGNORE_CAPITALIZATION);
 
-        SpellerAssertions spellerAssertions = new SpellerAssertions(textDescription);
-        spellerAssertions
+        new SpellerAssertions(textDescription)
                 .verifyEmptyBody();
     }
 }

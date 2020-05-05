@@ -1,18 +1,16 @@
-package rest_assured;
+package rest_assured.Services;
 
 import com.google.gson.Gson;
 import io.restassured.response.ResponseBody;
-
+import rest_assured.SpellerDto;
 import java.util.HashMap;
-
 import static rest_assured.URI.CHECK_TEXTS_ENDPOINT;
 import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 
 public class SpellerService {
-
     private final CommonService commonService = new CommonService();
 
-    public SpellerDto[] getSpellingOneWordCheckResult(String text,Integer option) {
+    public SpellerDto[] getSpellingOneWordCheckResult(String text, Integer option) {
         return getSpellingOneWordCheckResult(text,null,option);
     }
 
@@ -36,14 +34,12 @@ public class SpellerService {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXT_ENDPOINT, params).getBody();
         return new Gson().fromJson(body.asString(),SpellerDto[].class);
-        //return body.as(SpellerDto[].class);
     }
 
     private SpellerDto[][] getTextsSpellerResult(String text, String lang, Integer options) {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXTS_ENDPOINT, params).getBody();
         return new Gson().fromJson(body.asString(), SpellerDto[][].class);
-//        return body.as(SpellerDto[][].class);
     }
 
     private HashMap<String, Object> getParams(String text, String lang, Integer options) {

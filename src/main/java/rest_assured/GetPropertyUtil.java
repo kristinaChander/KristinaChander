@@ -1,11 +1,9 @@
 package rest_assured;
 
 import lombok.SneakyThrows;
-
 import java.util.Properties;
 
 public final class GetPropertyUtil {
-
     private GetPropertyUtil() {}
 
     private static final Properties PROPS = loadProperties();

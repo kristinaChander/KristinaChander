@@ -2,10 +2,9 @@ package rest_assured.functional_level.correct_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.SpellerAssertions;
+import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-
 import static rest_assured.Constants.*;
 
 public class IgnoreDigits extends SetUpFunctionalLevel {
@@ -19,11 +18,10 @@ public class IgnoreDigits extends SetUpFunctionalLevel {
     }
 
     @Test(description = "check word with digits", dataProvider = "digits")
-    void CapsSpelledTest(String digitWord) {
+    void capsSpelledTest(String digitWord) {
         SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(digitWord, OPTION_IGNORE_DIGITS);
 
-        SpellerAssertions spellerAssertions = new SpellerAssertions(textDescription);
-        spellerAssertions
+         new SpellerAssertions(textDescription)
                 .verifyEmptyBody();
     }
 }
