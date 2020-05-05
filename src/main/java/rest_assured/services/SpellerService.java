@@ -2,8 +2,8 @@ package rest_assured.services;
 
 import com.google.gson.Gson;
 import io.restassured.response.ResponseBody;
-import rest_assured.dTO.SpellerDto;
-import rest_assured.dTO.SpellerParamDto;
+import rest_assured.dto.SpellerDto;
+import rest_assured.dto.SpellerParamDto;
 
 import java.util.HashMap;
 

@@ -1,7 +1,7 @@
 package rest_assured.services;
 
 import org.assertj.core.api.Assertions;
-import rest_assured.dTO.SpellerDto;
+import rest_assured.dto.SpellerDto;
 
 public class SpellerAssertions {
     private SpellerDto[] spellerResponse;
