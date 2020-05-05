@@ -4,8 +4,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
+import rest_assured.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-import static rest_assured.Constants.*;
+
+import static rest_assured.SpellerServiceDescription.*;
+import static rest_assured.TestData.*;
 
 public class IgnoreCapitalization extends SetUpFunctionalLevel {
     @DataProvider
@@ -19,7 +22,12 @@ public class IgnoreCapitalization extends SetUpFunctionalLevel {
 
     @Test(description = "check word with caps", dataProvider = "capsCorrectCodeLang")
     void capsSpelledTest(String wrongWord, String lang) {
-        SpellerDto[] textDescription = spellerService.checkOneWordWithOptionsAndLang(wrongWord, lang, OPTION_IGNORE_CAPITALIZATION);
+
+        SpellerDto[] textDescription = spellerService.getTextSpellerResult(new SpellerParamDto().builder()
+                .text(wrongWord)
+                .lang(lang)
+                .options(OPTION_IGNORE_CAPITALIZATION)
+                .build());
 
         new SpellerAssertions(textDescription)
                 .verifyEmptyBody();

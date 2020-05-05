@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 import rest_assured.low_level.LowLevelSetUp;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static rest_assured.Constants.OPTION_IGNORE_DIGITS;
-import static rest_assured.Constants.WORD_WITH_DIGITS;
+import static rest_assured.SpellerServiceDescription.OPTION_IGNORE_DIGITS;
+import static rest_assured.TestData.WORD_WITH_DIGITS;
 import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 
 public class IgnoreDigitsTest extends LowLevelSetUp {

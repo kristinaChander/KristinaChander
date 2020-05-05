@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
 import java.util.List;
 
 @Data
@@ -11,11 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class SpellerDto {
-        private Integer code;
-        private Integer pos;
-        private Integer row;
-        private Integer col;
-        private Integer len;
-        private String word;
-        private List<String> s;
+    private Integer code;
+    private Integer pos;
+    private Integer row;
+    private Integer col;
+    private Integer len;
+    private String word;
+    private List<String> s;
 }

@@ -4,8 +4,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
+import rest_assured.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-import static rest_assured.Constants.*;
+
+import static rest_assured.SpellerServiceDescription.ENGLISH_LANG;
+import static rest_assured.SpellerServiceDescription.RUSSIAN_LANG;
+import static rest_assured.SpellerServiceDescription.UKRAINIAN_LANG;
+import static rest_assured.TestData.*;
 
 public class CorrectSpellingTest extends SetUpFunctionalLevel {
     @DataProvider
@@ -19,7 +24,10 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
 
     @Test(description = "check correctly spelled word", dataProvider = "correctWordAndLang")
     void oneCorrectWordTest(String word, String lang) {
-        SpellerDto[] textDescription = spellerService.checkOneWordWithLang(word, lang);
+        SpellerDto[] textDescription = spellerService.getTextSpellerResult(SpellerParamDto.builder()
+                .text(word)
+                .lang(lang)
+                .build());
 
         new SpellerAssertions(textDescription)
                 .verifyEmptyBody();
@@ -37,7 +45,10 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
 
     @Test(description = "check correctly spelled sentence", dataProvider = "correctSentenceAndLang")
     void correctSentenceTest(String sentence, String lang) {
-        SpellerDto[][] textDescription = spellerService.checkSentenceWithLang(sentence, lang);
+        SpellerDto[][] textDescription = spellerService.getTextsSpellerResult(SpellerParamDto.builder()
+                .text(sentence)
+                .lang(lang)
+                .build());
 
         new SpellerAssertions(textDescription[0])
                 .verifyEmptyBody();

@@ -4,8 +4,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rest_assured.Services.SpellerAssertions;
 import rest_assured.SpellerDto;
+import rest_assured.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
-import static rest_assured.Constants.*;
+
+import static rest_assured.SpellerServiceDescription.*;
+import static rest_assured.TestData.*;
 
 public class WordDuplicationTest extends SetUpFunctionalLevel {
     @DataProvider
@@ -19,7 +22,11 @@ public class WordDuplicationTest extends SetUpFunctionalLevel {
 
     @Test(description = "check sentence with word duplications", dataProvider = "duplSentenceCodeLang")
     void capsSpelledTest(String duplSentence, Integer errorCode, String lang) {
-        SpellerDto[][] textDescription = spellerService.checkSentenceWithOptionsAndLang(duplSentence, lang, OPTION_FIND_DUPLICATION);
+        SpellerDto[][] textDescription = spellerService.getTextsSpellerResult(SpellerParamDto.builder()
+                .text(duplSentence)
+                .lang(lang)
+                .options(OPTION_FIND_DUPLICATION)
+                .build());
 
         new SpellerAssertions(textDescription[0])
                 .verifyNotEmptyBody()

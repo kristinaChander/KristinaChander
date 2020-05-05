@@ -2,6 +2,8 @@ package rest_assured.Services;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.util.Map;
@@ -15,6 +17,8 @@ public class CommonService {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         REQUEST_SPECIFICATION = new RequestSpecBuilder()
                 .setBaseUri(DOMAIN)
+                .addFilter(new RequestLoggingFilter())
+                .addFilter(new ResponseLoggingFilter())
                 .build();
     }
 

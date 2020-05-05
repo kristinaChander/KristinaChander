@@ -6,7 +6,10 @@ import rest_assured.low_level.LowLevelSetUp;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.notNullValue;
-import static rest_assured.Constants.*;
+import static rest_assured.SpellerServiceDescription.ENGLISH_LANG;
+import static rest_assured.SpellerServiceDescription.ERROR_CODE_WORD_DUPLICATION;
+import static rest_assured.SpellerServiceDescription.OPTION_FIND_DUPLICATION;
+import static rest_assured.TestData.SENTENCE_ENGLISH_DUPLICATION;
 import static rest_assured.URI.CHECK_TEXTS_ENDPOINT;
 
 public class WordDuplicationTest extends LowLevelSetUp {
