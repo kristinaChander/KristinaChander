@@ -19,7 +19,7 @@ public class IncorrectSpellingTest extends SetUpFunctionalLevel {
 
     @Test(description = "check incorrectly spelled word", dataProvider = "correctAndErrorWordsAndCodes")
     void oneIncorrectWordTest(String wrongWord, String correctWord, Integer errorCode, String lang) {
-        SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(wrongWord, lang);
+        SpellerDto[] textDescription = spellerService.checkOneWordWithLang(wrongWord, lang);
 
         new SpellerAssertions(textDescription)
                 .verifyNotEmptyBody()
@@ -39,7 +39,7 @@ public class IncorrectSpellingTest extends SetUpFunctionalLevel {
 
     @Test(description = "check incorrectly spelled sentence", dataProvider = "errorSentenceAndLang")
     void incorrectSentenceTest(String sentence, String lang) {
-        SpellerDto[][] textDescription = spellerService.getSpellingSentenceCheckResult(sentence, lang);
+        SpellerDto[][] textDescription = spellerService.checkSentenceWithLang(sentence, lang);
 
        new SpellerAssertions(textDescription[0])
                .verifyNotEmptyBody();

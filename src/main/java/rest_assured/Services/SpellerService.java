@@ -10,33 +10,33 @@ import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 public class SpellerService {
     private final CommonService commonService = new CommonService();
 
-    public SpellerDto[] getSpellingOneWordCheckResult(String text, Integer option) {
-        return getSpellingOneWordCheckResult(text,null,option);
+    public SpellerDto[] checkOneWordWithOptions(String text, Integer option) {
+        return checkOneWordWithOptionsAndLang(text,null,option);
     }
 
-    public SpellerDto[] getSpellingOneWordCheckResult(String text, String lang) {
-        return getTextSpellerResult(text, lang, null);
+    public SpellerDto[] checkOneWordWithLang(String text, String lang) {
+        return getTextSpellerResultOneWord(text, lang, null);
     }
 
-    public SpellerDto[] getSpellingOneWordCheckResult(String text, String lang, Integer options) {
-        return getTextSpellerResult(text, lang, options);
+    public SpellerDto[] checkOneWordWithOptionsAndLang(String text, String lang, Integer options) {
+        return getTextSpellerResultOneWord(text, lang, options);
     }
 
-    public SpellerDto[][] getSpellingSentenceCheckResult(String text, String lang) {
-        return getTextsSpellerResult(text, lang, null);
+    public SpellerDto[][] checkSentenceWithLang(String text, String lang) {
+        return getTextsSpellerResultSentence(text, lang, null);
     }
 
-    public SpellerDto[][] getSpellingSentenceCheckResult(String text, String lang, Integer options) {
-        return getTextsSpellerResult(text, lang, options);
+    public SpellerDto[][] checkSentenceWithOptionsAndLang(String text, String lang, Integer options) {
+        return getTextsSpellerResultSentence(text, lang, options);
     }
 
-    private SpellerDto[] getTextSpellerResult(String text, String lang, Integer options) {
+    private SpellerDto[] getTextSpellerResultOneWord(String text, String lang, Integer options) {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXT_ENDPOINT, params).getBody();
         return new Gson().fromJson(body.asString(),SpellerDto[].class);
     }
 
-    private SpellerDto[][] getTextsSpellerResult(String text, String lang, Integer options) {
+    private SpellerDto[][] getTextsSpellerResultSentence(String text, String lang, Integer options) {
         HashMap<String, Object> params = getParams(text, lang, options);
         ResponseBody body = commonService.getWithParams(CHECK_TEXTS_ENDPOINT, params).getBody();
         return new Gson().fromJson(body.asString(), SpellerDto[][].class);

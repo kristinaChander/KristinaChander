@@ -19,7 +19,7 @@ public class IgnoreDigits extends SetUpFunctionalLevel {
 
     @Test(description = "check word with digits", dataProvider = "digits")
     void capsSpelledTest(String digitWord) {
-        SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(digitWord, OPTION_IGNORE_DIGITS);
+        SpellerDto[] textDescription = spellerService.checkOneWordWithOptions(digitWord, OPTION_IGNORE_DIGITS);
 
          new SpellerAssertions(textDescription)
                 .verifyEmptyBody();

@@ -19,7 +19,7 @@ public class CapsWrongSpelling extends SetUpFunctionalLevel {
 
     @Test(description = "check word with caps", dataProvider = "capsCorrectCodeLang")
     void capsSpelledTest(String wrongWord, String correctWord, Integer errorCode, String lang) {
-        SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(wrongWord, lang);
+        SpellerDto[] textDescription = spellerService.checkOneWordWithLang(wrongWord, lang);
 
         new SpellerAssertions(textDescription)
                 .verifyNotEmptyBody()

@@ -19,7 +19,7 @@ public class IgnoreCapitalization extends SetUpFunctionalLevel {
 
     @Test(description = "check word with caps", dataProvider = "capsCorrectCodeLang")
     void capsSpelledTest(String wrongWord, String lang) {
-        SpellerDto[] textDescription = spellerService.getSpellingOneWordCheckResult(wrongWord, lang, OPTION_IGNORE_CAPITALIZATION);
+        SpellerDto[] textDescription = spellerService.checkOneWordWithOptionsAndLang(wrongWord, lang, OPTION_IGNORE_CAPITALIZATION);
 
         new SpellerAssertions(textDescription)
                 .verifyEmptyBody();

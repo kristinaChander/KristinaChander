@@ -19,7 +19,7 @@ public class WordDuplicationTest extends SetUpFunctionalLevel {
 
     @Test(description = "check sentence with word duplications", dataProvider = "duplSentenceCodeLang")
     void capsSpelledTest(String duplSentence, Integer errorCode, String lang) {
-        SpellerDto[][] textDescription = spellerService.getSpellingSentenceCheckResult(duplSentence, lang, OPTION_FIND_DUPLICATION);
+        SpellerDto[][] textDescription = spellerService.checkSentenceWithOptionsAndLang(duplSentence, lang, OPTION_FIND_DUPLICATION);
 
         new SpellerAssertions(textDescription[0])
                 .verifyNotEmptyBody()
