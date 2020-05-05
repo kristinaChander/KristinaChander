@@ -6,6 +6,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
+
 import static rest_assured.URI.DOMAIN;
 
 public class LowLevelSetUp {

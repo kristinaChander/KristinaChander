@@ -10,9 +10,8 @@ public class SpellerAssertions {
         this.spellerResponse = spellerResponse;
     }
 
-    public SpellerAssertions verifyEmptyBody() {
+    public void verifyEmptyBody() {
         Assertions.assertThat(spellerResponse).isEmpty();
-        return this;
     }
 
     public SpellerAssertions verifyNotEmptyBody() {
@@ -21,16 +20,16 @@ public class SpellerAssertions {
     }
 
     public SpellerAssertions verifyBodyHasErrorCode(Integer errorCode) {
-        Assertions.assertThat(spellerResponse[0]).extracting( "code").isSameAs(errorCode);
-        return this;
-    }
-    public SpellerAssertions verifyBodyHasIncorrectWord(String incorrectWord) {
-        Assertions.assertThat(spellerResponse[0]).extracting("word").isEqualTo(incorrectWord);
+        Assertions.assertThat(spellerResponse[0]).extracting("code").isSameAs(errorCode);
         return this;
     }
 
+    public void verifyBodyHasIncorrectWord(String incorrectWord) {
+        Assertions.assertThat(spellerResponse[0]).extracting("word").isEqualTo(incorrectWord);
+    }
+
     public SpellerAssertions verifyBodyHasCorrectedWord(String correctWord) {
-        Assertions.assertThat(spellerResponse[0]).extracting( "s").isEqualToComparingOnlyGivenFields(correctWord);
+        Assertions.assertThat(spellerResponse[0]).extracting("s").isEqualToComparingOnlyGivenFields(correctWord);
         return this;
     }
 }

@@ -2,10 +2,10 @@ package rest_assured.functional_level.correct_spelling;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import rest_assured.services.SpellerAssertions;
 import rest_assured.dTO.SpellerDto;
 import rest_assured.dTO.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
+import rest_assured.services.SpellerAssertions;
 
 import static rest_assured.SpellerServiceDescription.OPTION_IGNORE_DIGITS;
 import static rest_assured.TestData.*;
@@ -27,7 +27,7 @@ public class IgnoreDigits extends SetUpFunctionalLevel {
                 .options(OPTION_IGNORE_DIGITS)
                 .build());
 
-         new SpellerAssertions(textDescription)
+        new SpellerAssertions(textDescription)
                 .verifyEmptyBody();
     }
 }

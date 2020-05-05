@@ -3,13 +3,12 @@ package rest_assured.low_level.tests_with_spel_errors;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import rest_assured.low_level.LowLevelSetUp;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static rest_assured.SpellerServiceDescription.ENGLISH_LANG;
 import static rest_assured.SpellerServiceDescription.ERROR_CODE_NOT_IN_THE_DICTIONARY;
-import static rest_assured.TestData.ONE_ENGLISH_WORD_CORRECT_SPELLING;
-import static rest_assured.TestData.ONE_ENGLISH_WORD_WRONG_SPELLING;
-import static rest_assured.TestData.SENTENCE_ENGLISH_WRONG_SPELLING;
+import static rest_assured.TestData.*;
 import static rest_assured.URI.CHECK_TEXTS_ENDPOINT;
 import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
 

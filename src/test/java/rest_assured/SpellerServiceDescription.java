@@ -1,11 +1,6 @@
 package rest_assured;
 
-import static rest_assured.GetPropertyUtil.getPropertyAsInteger;
-import static rest_assured.GetPropertyUtil.getPropertyAsString;
-
 public class SpellerServiceDescription {
-
-
     public static final String ENGLISH_LANG = "en";
     public static final String RUSSIAN_LANG = "ru";
     public static final String UKRAINIAN_LANG = "uk";
