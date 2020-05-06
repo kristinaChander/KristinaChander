@@ -6,18 +6,21 @@ import rest_assured.low_level.LowLevelSetUp;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static rest_assured.SpellerServiceDescription.ENGLISH_LANG;
-import static rest_assured.SpellerServiceDescription.OPTION_IGNORE_CAPITALIZATION;
 import static rest_assured.TestData.ENGLISH_WORD_WITH_CAPS;
-import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
+import static rest_assured.constants_and_utils.SpellerParameters.LANGUAGE;
+import static rest_assured.constants_and_utils.SpellerParameters.OPTIONS;
+import static rest_assured.constants_and_utils.SpellerParameters.TEXT;
+import static rest_assured.constants_and_utils.URI.CHECK_TEXT_ENDPOINT;
+import static rest_assured.speller_service_description.Languages.ENGLISH;
+import static rest_assured.speller_service_description.Options.IGNORE_CAPITALIZATION;
 
 public class IgnoreCapitalizationTest extends LowLevelSetUp {
     @Test(description = "one word with caps")
     public void emptyBodyIfIgnoreCaps() {
         given(REQUEST_SPECIFICATION)
-                .param("text", ENGLISH_WORD_WITH_CAPS)
-                .param("options", OPTION_IGNORE_CAPITALIZATION)
-                .param("lang", ENGLISH_LANG)
+                .param(TEXT.getValue(), ENGLISH_WORD_WITH_CAPS)
+                .param(OPTIONS.getValue(), IGNORE_CAPITALIZATION.getValue())
+                .param(LANGUAGE.getValue(), ENGLISH.getValue())
                 .get(CHECK_TEXT_ENDPOINT)
                 .then()
                 .statusCode(HttpStatus.SC_OK).and()

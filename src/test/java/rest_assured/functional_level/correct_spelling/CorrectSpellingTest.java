@@ -7,16 +7,16 @@ import rest_assured.dto.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
 import rest_assured.services.SpellerAssertions;
 
-import static rest_assured.SpellerServiceDescription.*;
 import static rest_assured.TestData.*;
+import static rest_assured.speller_service_description.Languages.*;
 
 public class CorrectSpellingTest extends SetUpFunctionalLevel {
     @DataProvider
     public Object[][] correctWordAndLang() {
         return new Object[][]{
-                {ONE_ENGLISH_WORD_CORRECT_SPELLING, ENGLISH_LANG},
-                {ONE_RUSSIAN_WORD_CORRECT_SPELLING, RUSSIAN_LANG},
-                {ONE_UKRAINIAN_WORD_CORRECT_SPELLING, UKRAINIAN_LANG},
+                {ONE_ENGLISH_WORD_CORRECT_SPELLING, ENGLISH.getValue()},
+                {ONE_RUSSIAN_WORD_CORRECT_SPELLING, RUSSIAN.getValue()},
+                {ONE_UKRAINIAN_WORD_CORRECT_SPELLING, UKRAINIAN.getValue()},
         };
     }
 
@@ -34,9 +34,9 @@ public class CorrectSpellingTest extends SetUpFunctionalLevel {
     @DataProvider
     public Object[][] correctSentenceAndLang() {
         return new Object[][]{
-                {SENTENCE_ENGLISH_CORRECT_SPELLING, ENGLISH_LANG},
-                {SENTENCE_RUSSIAN_CORRECT_SPELLING, RUSSIAN_LANG},
-                {SENTENCE_UKRAINIAN_CORRECT_SPELLING, UKRAINIAN_LANG},
+                {SENTENCE_ENGLISH_CORRECT_SPELLING, ENGLISH.getValue()},
+                {SENTENCE_RUSSIAN_CORRECT_SPELLING, RUSSIAN.getValue()},
+                {SENTENCE_UKRAINIAN_CORRECT_SPELLING, UKRAINIAN.getValue()},
         };
     }
 

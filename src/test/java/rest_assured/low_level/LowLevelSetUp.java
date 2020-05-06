@@ -7,7 +7,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
-import static rest_assured.URI.DOMAIN;
+import static rest_assured.constants_and_utils.URI.DOMAIN;
 
 public class LowLevelSetUp {
     protected RequestSpecification REQUEST_SPECIFICATION;

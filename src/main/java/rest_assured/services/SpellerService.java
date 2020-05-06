@@ -7,8 +7,8 @@ import rest_assured.dto.SpellerParamDto;
 
 import java.util.HashMap;
 
-import static rest_assured.URI.CHECK_TEXTS_ENDPOINT;
-import static rest_assured.URI.CHECK_TEXT_ENDPOINT;
+import static rest_assured.constants_and_utils.URI.CHECK_TEXTS_ENDPOINT;
+import static rest_assured.constants_and_utils.URI.CHECK_TEXT_ENDPOINT;
 
 public class SpellerService {
     private final CommonService commonService = new CommonService();

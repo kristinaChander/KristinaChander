@@ -7,8 +7,8 @@ import rest_assured.dto.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
 import rest_assured.services.SpellerAssertions;
 
-import static rest_assured.SpellerServiceDescription.OPTION_IGNORE_DIGITS;
 import static rest_assured.TestData.*;
+import static rest_assured.speller_service_description.Options.IGNORE_DIGITS;
 
 public class IgnoreDigits extends SetUpFunctionalLevel {
     @DataProvider
@@ -24,7 +24,7 @@ public class IgnoreDigits extends SetUpFunctionalLevel {
     void capsSpelledTest(String digitWord) {
         SpellerDto[] textDescription = spellerService.getTextSpellerResult(SpellerParamDto.builder()
                 .text(digitWord)
-                .options(OPTION_IGNORE_DIGITS)
+                .options(IGNORE_DIGITS.getValue())
                 .build());
 
         new SpellerAssertions(textDescription)

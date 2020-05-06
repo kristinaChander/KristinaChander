@@ -10,7 +10,7 @@ import io.restassured.specification.RequestSpecification;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static rest_assured.URI.DOMAIN;
+import static rest_assured.constants_and_utils.URI.DOMAIN;
 
 public class CommonService {
     private RequestSpecification REQUEST_SPECIFICATION;

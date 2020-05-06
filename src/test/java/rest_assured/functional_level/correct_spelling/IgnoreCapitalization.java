@@ -7,16 +7,17 @@ import rest_assured.dto.SpellerParamDto;
 import rest_assured.functional_level.SetUpFunctionalLevel;
 import rest_assured.services.SpellerAssertions;
 
-import static rest_assured.SpellerServiceDescription.*;
 import static rest_assured.TestData.*;
+import static rest_assured.speller_service_description.Languages.*;
+import static rest_assured.speller_service_description.Options.IGNORE_CAPITALIZATION;
 
 public class IgnoreCapitalization extends SetUpFunctionalLevel {
     @DataProvider
     public Object[][] capsCorrectCodeLang() {
         return new Object[][]{
-                {ENGLISH_WORD_WITH_CAPS, ENGLISH_LANG},
-                {RUSSIAN_WORD_WITH_CAPS, RUSSIAN_LANG},
-                {UKRAINIAN_WORD_WITH_CAPS, UKRAINIAN_LANG},
+                {ENGLISH_WORD_WITH_CAPS, ENGLISH.getValue()},
+                {RUSSIAN_WORD_WITH_CAPS, RUSSIAN.getValue()},
+                {UKRAINIAN_WORD_WITH_CAPS, UKRAINIAN.getValue()},
         };
     }
 
@@ -26,7 +27,7 @@ public class IgnoreCapitalization extends SetUpFunctionalLevel {
         SpellerDto[] textDescription = spellerService.getTextSpellerResult(new SpellerParamDto().builder()
                 .text(wrongWord)
                 .lang(lang)
-                .options(OPTION_IGNORE_CAPITALIZATION)
+                .options(IGNORE_CAPITALIZATION.getValue())
                 .build());
 
         new SpellerAssertions(textDescription)
